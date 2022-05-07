@@ -14,7 +14,7 @@
 - python -m pip install --upgrade pip后安装成功！satisfied!!!
 
 - 案例2：
-- 如何定义问题和对应的意图。在nlu中意图为faq/***后,ResponseSelector训练数据中的意图是group/intent的格式，需要在data/responses.yml中写入utter_faq/***普通意图intent，需要在domain中写入utter_***
+- 如何定义问题和对应的意图。在nlu中意图为faq//*/*/*后,ResponseSelector训练数据中的意图是group/intent的格式，需要在data/responses.yml中写入utter_faq/*/*/*普通意图intent，需要在domain中写入utter_/*/*/*
 
 - rasa run -m models --enable-api --cors "*" –debug
 - vpn对rasa模型训练有影响。
