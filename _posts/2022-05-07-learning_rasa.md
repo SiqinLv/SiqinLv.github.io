@@ -1,30 +1,29 @@
-Rasa安装：
-教程：https://www.rasachatbot.com/1_Installation/
-安装命令：pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
-安装时的报错信息1：Building wheels for collected packages: ujson,
-解决方案：conda install json
-安装时的报错信息2：ERROR: Command errored out with exit status 1: python setup.py egg_inf
-解决方案：pip install --upgrade setuptools 
-python -m pip install --upgrade pip
-运行后会出现ERROR: Failed building wheel for ujson错误
-解决方案：卸载ujson ，命令为conda uninstall ujson
-		  重新安装使用：pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
-依然报错：
- 
-解决方案：https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16后，选择visual c++ 14.0后，再次运行pip install --upgrade setuptools 
-python -m pip install --upgrade pip后安装成功！satisfied!!!
+- Rasa安装：
+- 教程：https://www.rasachatbot.com/1_Installation/
+- 安装命令：pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
+- 安装时的报错信息1：Building wheels for collected packages: ujson,
+- 解决方案：conda install json
+- 安装时的报错信息2：ERROR: Command errored out with exit status 1: python setup.py egg_inf
+- 解决方案：pip install --upgrade setuptools 
+- python -m pip install --upgrade pip
+- 运行后会出现ERROR: Failed building wheel for ujson错误
+- 解决方案：卸载ujson ，命令为conda uninstall ujson
+- 重新安装使用：pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
+- 依然报错：
+- 解决方案：https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16后，选择visual c++ 14.0后，再次运行pip install --upgrade setuptools 
+- python -m pip install --upgrade pip后安装成功！satisfied!!!
 
-案例2：
-如何定义问题和对应的意图。在nlu中意图为faq/***后,ResponseSelector训练数据中的意图是group/intent的格式，需要在data/responses.yml中写入utter_faq/***普通意图intent，需要在domain中写入utter_***
+- 案例2：
+- 如何定义问题和对应的意图。在nlu中意图为faq/***后,ResponseSelector训练数据中的意图是group/intent的格式，需要在data/responses.yml中写入utter_faq/***普通意图intent，需要在domain中写入utter_***
 
-rasa run -m models --enable-api --cors "*" –debug
-vpn对rasa模型训练有影响。
+- rasa run -m models --enable-api --cors "*" –debug
+- vpn对rasa模型训练有影响。
 Rasa运行：
 1.	运行动作服务器：rasa run actions
 2.	运行Rasa服务器和客户端：rasa shell
 3.	运行rasa服务器：rasa run –cors “*”
 4.	运行网页客户端：Python -m http.server
-
+```python
 系统案例：
 1.	报时机器人：
 a)	Rasa core是rasa体系中负责对话管理的部分，用于记录对话过程和选择下一个动作。机器学习驱动的对话管理引擎。
@@ -115,3 +114,4 @@ b)	定义问题的答案
 i.	ResponseSelector中使用domain.yml的reponses字段来存放答案数据。Rasa中意图为intent的问题需要一个名为utter_intent的response作为答案。
 c)	训练rasa
 d)	为了根据问题智能具有良好的泛化性，需要responseSelector在现有数据上进行训练。只需将responseSlector组件加入NLU的流水线上即可。
+```
