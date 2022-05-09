@@ -19,5 +19,7 @@
 >>> ***ActioQueryKnowledgeBase默认返回消息是英文***
 >>>1. 当用户请求机器人返回列表是utter_objects()会被调用。utter_objects()的功能是把对象的情况给用户。
 >>>>. 默认的返回结果是无法作为商用产品呈现给用户。必须基于中文的更加贴近业务的响应内容。需要用utter_obkect方式。
->>>>. 当用户请求机器人返回某一对象的具体属性时，utter_attribute_value()会被自动调用。
->>>>. 
+>>>>. 当用户请求机器人返回某一对象的具体属性时，utter_attribute_value()会被自动调用。会将查询结果返回给用户。
+>>> 自定义InMemoryKnowledgeBase
+>>>>- InMemoryKnowledgeBase继承KnowledgeBase类，可以通过重写ovrride类实现自定义。
+>>>>- get_key_attribute_of_object():为了追踪用户最后提到的对象。存储对象的关键属性key attribute,每个对象都有一个全局的关键属性。，默认为id,可用set_key_attribute_object()来更改设置。
