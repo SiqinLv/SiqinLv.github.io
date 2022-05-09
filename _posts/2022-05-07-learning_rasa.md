@@ -1,29 +1,31 @@
-- Rasa安装：
-- 教程：https://www.rasachatbot.com/1_Installation/
-- 安装命令：pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
-- 安装时的报错信息1：Building wheels for collected packages: ujson,
-- 解决方案：conda install json
-- 安装时的报错信息2：ERROR: Command errored out with exit status 1: python setup.py egg_inf
-- 解决方案：pip install --upgrade setuptools 
-- python -m pip install --upgrade pip
-- 运行后会出现ERROR: Failed building wheel for ujson错误
-- 解决方案：卸载ujson ，命令为conda uninstall ujson
-- 重新安装使用：pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
-- 依然报错：
-- 解决方案：https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16后，选择visual c++ 14.0后，再次运行pip install --upgrade setuptools 
-- python -m pip install --upgrade pip后安装成功！satisfied!!!
+```python
+Rasa安装：
+教程：https://www.rasachatbot.com/1_Installation/
+安装命令：pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
+安装时的报错信息1：Building wheels for collected packages: ujson,
+解决方案：conda install json
+安装时的报错信息2：ERROR: Command errored out with exit status 1: python setup.py egg_inf
+解决方案：pip install --upgrade setuptools 
+python -m pip install --upgrade pip
+运行后会出现ERROR: Failed building wheel for ujson错误
+解决方案：卸载ujson ，命令为conda uninstall ujson
+		  重新安装使用：pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
+依然报错：
+ 
+解决方案：https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16后，选择visual c++ 14.0后，再次运行pip install --upgrade setuptools 
+python -m pip install --upgrade pip后安装成功！satisfied!!!
 
-- 案例2：
-- 如何定义问题和对应的意图。在nlu中意图为faq/\*\*\*后,ResponseSelector训练数据中的意图是group/intent的格式，需要在data/responses.yml中写入utter_faq\*\*\*普通意图intent，需要在domain中写入utter_\*\*\*
+案例2：
+如何定义问题和对应的意图。在nlu中意图为faq/***后,ResponseSelector训练数据中的意图是group/intent的格式，需要在data/responses.yml中写入utter_faq/***普通意图intent，需要在domain中写入utter_***
 
-- rasa run -m models --enable-api --cors "*" –debug
-- vpn对rasa模型训练有影响。
+rasa run -m models --enable-api --cors "*" –debug
+vpn对rasa模型训练有影响。
 Rasa运行：
 1.	运行动作服务器：rasa run actions
 2.	运行Rasa服务器和客户端：rasa shell
 3.	运行rasa服务器：rasa run –cors “*”
 4.	运行网页客户端：Python -m http.server
-```python
+
 系统案例：
 1.	报时机器人：
 a)	Rasa core是rasa体系中负责对话管理的部分，用于记录对话过程和选择下一个动作。机器学习驱动的对话管理引擎。
@@ -114,4 +116,20 @@ b)	定义问题的答案
 i.	ResponseSelector中使用domain.yml的reponses字段来存放答案数据。Rasa中意图为intent的问题需要一个名为utter_intent的response作为答案。
 c)	训练rasa
 d)	为了根据问题智能具有良好的泛化性，需要responseSelector在现有数据上进行训练。只需将responseSlector组件加入NLU的流水线上即可。
+e)	经过训练的ResponseSelector组件能够根据用户的语义正确地进行语义分类。需要启动RelePolicy
+f)	还需要设置一个规则rule,将问题分类映射到对应的动作上。当rasa服务运行时，ReluPolicy的自动触发机制将会保证在NLU正确识别成检索意图时，自动执行对应的动作。
+g)	FAQ机器人功能分为业务无关功能和业务相关功能。
+3.	基于规则的对话管理
+a)	Fallback:用于兜底，确保即使出错也能很有丫的用对不起，我没明白您的意思之类的文本回复给用户，根据不同的原因，fallback可以分为NLU fallback和策略fallback。
+i.	NLU fallback负责NLU阶段理解用户意图困难或模糊的情况，可用FallbackClassifier组件。（最高置信度不大于或等于0.6，最高的前两个意图得分之差不超过0.1时NLU的意图 就会被替换为nlu fallback）
+ii.	策略fallback:在预测下一个动作时，如果预测结果的置信度不高或最高的两个动作差很低，就需要fallback。
+b)	意图触发动作
+i.	Rasa允许通过类似/intent{‘’entity1：vall,entity2：val2}的快捷方式表示意图和实体。RelePolicy为action_restart,action_back,action_session_start这三个会话级别提供了意图restart,back,session_start并建立好了意图到动作的映射。可通过/restart,/back,/session_start来表达意图。
+ii.	自定义意图触发动作需要用到ReluPolicy功能，在stories.yml中定义。
+c)	表单：
+i.	引导用户填写表单。为了使Rasa正确地进行基于表单的对话，需要将ReluPolicy加入配置文件。
+ii.	Action_loop和表单同名，会进入对应的填槽-询问的循环过程。
+iii.	执行表单：当表单要求满足后，就可执行表单任务了。
+4.	基于知识库的问答
+
 ```
