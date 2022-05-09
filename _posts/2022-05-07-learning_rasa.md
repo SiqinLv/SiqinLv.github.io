@@ -1,5 +1,4 @@
-```python
-Rasa安装：
+***Rasa安装：***
 教程：https://www.rasachatbot.com/1_Installation/
 安装命令：pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
 安装时的报错信息1：Building wheels for collected packages: ujson,
@@ -11,7 +10,7 @@ python -m pip install --upgrade pip
 解决方案：卸载ujson ，命令为conda uninstall ujson
 		  重新安装使用：pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
 依然报错：
- 
+ ![alt 错误信息1](../images/image.png)
 解决方案：https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16后，选择visual c++ 14.0后，再次运行pip install --upgrade setuptools 
 python -m pip install --upgrade pip后安装成功！satisfied!!!
 
@@ -25,7 +24,7 @@ Rasa运行：
 2.	运行Rasa服务器和客户端：rasa shell
 3.	运行rasa服务器：rasa run –cors “*”
 4.	运行网页客户端：Python -m http.server
-
+```python
 系统案例：
 1.	报时机器人：
 a)	Rasa core是rasa体系中负责对话管理的部分，用于记录对话过程和选择下一个动作。机器学习驱动的对话管理引擎。
