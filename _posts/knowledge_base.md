@@ -12,3 +12,12 @@
 >>>1. ActionQueryKnowledgeBase既需要当前提取的实体信息，又要先前对话留下的词槽
 >>>2. 对象查询：所有用户的输入都会被映射。
 >>>3. 属性查询：用户的请求中会包含对象信息及感兴趣的属性。
+>>>4. 解析指代：一个对象列表中的位置指代该对象的为序数指代。
+>>>> 在ActionQueryKnowledgeBase中设置映射关系。
+>>>> 需要将用户表达的不规则的序数映射成Last等，用NLU的实体同义词映射来完成。
+>>3. 自定义ActioQueryKnowledgeBase
+>>> ***ActioQueryKnowledgeBase默认返回消息是英文***
+>>>1. 当用户请求机器人返回列表是utter_objects()会被调用。utter_objects()的功能是把对象的情况给用户。
+>>>>. 默认的返回结果是无法作为商用产品呈现给用户。必须基于中文的更加贴近业务的响应内容。需要用utter_obkect方式。
+>>>>. 当用户请求机器人返回某一对象的具体属性时，utter_attribute_value()会被自动调用。
+>>>>. 
