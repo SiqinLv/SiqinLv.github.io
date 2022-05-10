@@ -1,6 +1,6 @@
 ***Rasa安装：***
-1. *教程：https://www.rasachatbot.com/1_Installation/*
-2. _安装命令：***pip install rasa-x --extra-index-url https://pypi.rasa.com/simple***_
+1. *教程：https://www.rasachatbot.com/1_Installation/*            
+2. _安装命令：***pip install rasa-x --extra-index-url https://pypi.rasa.com/simple***_ or pip install rasa-x -i https://pypi.rasa.com/simple` instead to install the rasa-x package
 3. 安装时的报错信息1：Building wheels for collected packages: ujson,
 4. 解决方案：conda install json
 5. 安装时的报错信息2：ERROR: Command errored out with exit status 1: python setup.py egg_inf
