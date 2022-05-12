@@ -15,4 +15,21 @@ DIETClassifier是rasa研究人员自己研究的一个框架，是一个两层�
 ResponseSelector:FAQ的一个组件，他就是负责QA匹配及训练及后面请求的时候所进行处理的结构。
 EntitySynonymMapper:同义词归一化
 Resa Core:j基于story，用户说的话：系统action:action1,action2
-Domain数据：这个系统是基于深度学习网络的，需要告诉他需要哪些输入和输出。
+Domain数据：这个系统是基于深度学习网络的，需要告诉他需要哪些输入和输出。多数情况下都是基于一个one-hot编码，用户说了哪些意图，说了就是1没说就是0，所以输入的时候，大小必须是固定死的，所以我们必须知道整个对话机器人宇宙里面有多少intent和Entity,slots就相当于机器人的一个记忆进行更改，response就相当于一个对话的模板，actions:输入是用户这轮话说了哪些意图，说了哪些实体，以及上一轮说了哪些话和实体，和哪些词槽值是什么样子，城市或address是否设置，存在1，不存在为0，可进行noe-hot。全部actions动作进行one-hot,才能对用户的输入和对话状态，统统映射成下一个动作，则变成一个分类问题，forms:表单，一次性操作，提交。
+rasa COre:policy是可以共存的
+policy的工作原理：只关心当前轮前的n轮，前面的用户说了那些话，slots里是什么样的值，用前面的状态去预测，前面的状态都都放在story下，意图实体以及系统执行的动作和副作用，比如把某个slot设置成某个值，因此我们可以获得上上轮以及上一轮的状态，及当前用户说了什么，就可以在story里面，story告诉我们该预测什么，我们就去学习，通过这种方法，我们就可以去进行policy的工作像一个时间预测样，通过前两轮的的状态去预测用户当前说了之后我该执行什么样的动作。
+Policy:有两种：1种是基于规则的，一种是基于记忆的
+MappingPolicy:基于规则的：keyValu形式：key->intent,value->action。
+MemoizationPollicy:基于记忆的：把记忆中story的历史全部记住，若发现现在的对话跟历史记忆中的那个sotory一模一样，那么就直接把story中用户写的的下一个action直接拿出来作为预测值。前面的例子非常有限，因为我们不可能把所有的story都写完。
+policy,基于DNN预测：KerasPolicy:tracker state1,tracker state2,tracker state3,通过LSTM把其中的一个LSTM拿出来通过一个全连接后进行softmax输出之后呢实际上是一个对应的action。
+Policy:基于编程：FormPolicy:表单，类。方法去做事，灵活
+Policy Ensemble:所有的Policy同时预测，按照得分取结果，得分同时按照优先级取结果。 
+Rasa是一个工业级产品：RPC式组件实现：Core/NLU/Action都可以本地调用也可以远程RPC
+stracker store:radis
+locker store:用户说了其他话，极大可能不去获取
+cloud model storage: 云存储模型，更新，卸载等
+端到端测试：story->
+交互式学习：预测对和错，训练数据
+Rasa X:可视化界面：分享等改善，表现不好，就去标注数据进行训练，端到端，跟踪观察怎么失败并提高，不断这种当时去提高准确度。
+rasa是：企业级应用
+rasa多个对话是基于监督：规则是为了保证他确定是规则的情况下更准确更高效的去处理，用DNN的方法与预测也是可以，并不一定百分百的可以。如果他是基于规则，否则为了泛化能力更强，本质上基于监督，规则能解决部分问题，不能解决所有问题。
