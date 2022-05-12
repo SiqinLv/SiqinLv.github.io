@@ -1,38 +1,38 @@
-rasa:开源对话机器人框架---任务型AI机器人助手。商用，稳定。一个开源的功能强大的对话机器人框架，提供端到端的，工业级别的任务型+FAQ型对话机器人的支持。
-逻辑黑盒子:
-用户->语音->语音识别-》自然语言理解NLU-》意图&实体(结构化)-》对话管理DM-》自然语言生成NLG-》语音合成-》用户
-意图识别，实体识别，domain识别。
-DM根据上下文选择合适的动作。
-DM对话管理：
-自然语言生成NLG:可以简单的理解成NLU的反向过程。予以表单通顺合理。
-Apache Lincese,Version2.0
-rasa NLU组件配置：language:zh
-pipline:一个流式的信息处理：前面的组件处理完的信息，把结果传递给下一个作为输出，将下一个的输出作为下下一个的输入。头尾详解
-如组件名字是HFTransformersNLP时：transformer是一个预训练模型，他需要一个很大的模型在本地，提供至少4-50个模型，
-当启动一个模型如bert时，在训练时，他会检测本地的缓存，若没有缓存则会下载模型，让在合适的地方，如公共目录，这个不需要去关心。框架通通以解决
-languageModelFeaturizer是一个bert版的一个分词，languageModelFeaturizer通过模型得到文本的一些特性。
-DIETClassifier是rasa研究人员自己研究的一个框架，是一个两层的transformer，他能同时做NLU和ner。这就是对NLU起作用的部分
-ResponseSelector:FAQ的一个组件，他就是负责QA匹配及训练及后面请求的时候所进行处理的结构。
+## rasa:开源对话机器人框架---任务型AI机器人助手。商用，稳定。一个开源的功能强大的对话机器人框架，提供端到端的，工业级别的任务型+FAQ型对话机器人的支持。##
+- 逻辑黑盒子:
+- 用户->语音->语音识别-》自然语言理解NLU-》意图&实体(结构化)-》对话管理DM-》自然语言生成NLG-》语音合成-》用户
+- 意图识别，实体识别，domain识别。
+- DM根据上下文选择合适的动作。
+- DM对话管理：
+- 自然语言生成NLG:可以简单的理解成NLU的反向过程。予以表单通顺合理。
+- Apache Lincese,Version2.0
+- rasa NLU组件配置：language:zh
+- pipline:一个流式的信息处理：前面的组件处理完的信息，把结果传递给下一个作为输出，将下一个的输出作为下下一个的输入。头尾详解
+- 如组件名字是HFTransformersNLP时：transformer是一个预训练模型，他需要一个很大的模型在本地，提供至少4-50个模型，
+- 当启动一个模型如bert时，在训练时，他会检测本地的缓存，若没有缓存则会下载模型，让在合适的地方，如公共目录，这个不需要去关心。框架通通以解决
+- languageModelFeaturizer是一个bert版的一个分词，languageModelFeaturizer通过模型得到文本的一些特性。
+- DIETClassifier是rasa研究人员自己研究的一个框架，是一个两层的transformer，他能同时做NLU和ner。这就是对NLU起作用的部分
+- ResponseSelector:FAQ的一个组件，他就是负责QA匹配及训练及后面请求的时候所进行处理的结构。
 EntitySynonymMapper:同义词归一化
-Resa Core:基于story，用户说的话：系统action:action1,action2
-Domain数据：这个系统是基于深度学习网络的，需要告诉他需要哪些输入和输出。多数情况下都是基于一个one-hot编码，用户说了哪些意图，说了就是1没说就是0，所以输入的时候，大小必须是固定死的，所以我们必须知道整个对话机器人宇宙里面有多少intent和Entity,slots就相当于机器人的一个记忆进行更改，response就相当于一个对话的模板，actions:输入是用户这轮话说了哪些意图，说了哪些实体，以及上一轮说了哪些话和实体，和哪些词槽值是什么样子，城市或address是否设置，存在1，不存在为0，可进行noe-hot。全部actions动作进行one-hot,才能对用户的输入和对话状态，统统映射成下一个动作，则变成一个分类问题，forms:表单，一次性操作，提交。
-rasa Core:policy是可以共存的
-policy的工作原理：只关心当前轮前的n轮，前面的用户说了那些话，slots里是什么样的值，用前面的状态去预测，前面的状态都都放在story下，意图实体以及系统执行的动作和副作用，比如把某个slot设置成某个值，因此我们可以获得上上轮以及上一轮的状态，及当前用户说了什么，就可以在story里面，story告诉我们该预测什么，我们就去学习，通过这种方法，我们就可以去进行policy的工作像一个时间预测样，通过前两轮的的状态去预测用户当前说了之后我该执行什么样的动作。
-Policy:有几种：1种是基于规则的，一种是基于记忆的，基于DNN预测，基于编程
-MappingPolicy:基于规则的：keyValu形式：key->intent,value->action。
-MemoizationPollicy:基于记忆的：把记忆中story的历史全部记住，若发现现在的对话跟历史记忆中的那个sotory一模一样，那么就直接把story中用户写的的下一个action直接拿出来作为预测值。前面的例子非常有限，因为我们不可能把所有的story都写完。
-policy,基于DNN预测：KerasPolicy:tracker state1,tracker state2,tracker state3,通过LSTM把其中的一个LSTM拿出来通过一个全连接后进行softmax输出之后呢实际上是一个对应的action。
-Policy:基于编程：FormPolicy:表单，类。方法去做事，灵活
-Policy Ensemble:所有的Policy同时预测，按照得分取结果，得分同时按照优先级取结果。 
-Rasa是一个工业级产品：RPC式组件实现：Core/NLU/Action都可以本地调用也可以远程RPC
-stracker store:radis
-locker store:用户说了其他话，极大可能不去获取
-cloud model storage: 云存储模型，更新，卸载等
-端到端测试：story->
-交互式学习：预测对和错，训练数据
-Rasa X:可视化界面：分享等改善，表现不好，就去标注数据进行训练，端到端，跟踪观察怎么失败并提高，不断这种当时去提高准确度。
-rasa是：企业级应用
-rasa多个对话是基于监督：规则是为了保证他确定是规则的情况下更准确更高效的去处理，用DNN的方法与预测也是可以，并不一定百分百的可以。如果他是基于规则，否则为了泛化能力更强，本质上基于监督，规则能解决部分问题，不能解决所有问题。
+- Resa Core:基于story，用户说的话：系统action:action1,action2
+- Domain数据：这个系统是基于深度学习网络的，需要告诉他需要哪些输入和输出。多数情况下都是基于一个one-hot编码，用户说了哪些意图，说了就是1没说就是0，所以输入的时候，大小必须是固定死的，所以我们必须知道整个对话机器人宇宙里面有多少intent和Entity,slots就相当于机器人的一个记忆进行更改，response就相当于一个对话的模板，actions:输入是用户这轮话说了哪些意图，说了哪些实体，以及上一轮说了哪些话和实体，和哪些词槽值是什么样子，城市或address是否设置，存在1，不存在为0，可进行noe-hot。全部actions动作进行one-hot,才能对用户的输入和对话状态，统统映射成下一个动作，则变成一个分类问题，forms:表单，一次性操作，提交。
+- rasa Core:policy是可以共存的
+- policy的工作原理：只关心当前轮前的n轮，前面的用户说了那些话，slots里是什么样的值，用前面的状态去预测，前面的状态都都放在story下，意图实体以及系统执行的动作和副作用，比如把某个slot设置成某个值，因此我们可以获得上上轮以及上一轮的状态，及当前用户说了什么，就可以在story里面，story告诉我们该预测什么，我们就去学习，通过这种方法，我们就可以去进行policy的工作像一个时间预测样，通过前两轮的的状态去预测用户当前说了之后我该执行什么样的动作。
+- Policy:有几种：1种是基于规则的，一种是基于记忆的，基于DNN预测，基于编程
+- MappingPolicy:基于规则的：keyValu形式：key->intent,value->action。
+- MemoizationPollicy:基于记忆的：把记忆中story的历史全部记住，若发现现在的对话跟历史记忆中的那个sotory一模一样，那么就直接把story中用户写的的下一个action直接拿出来作为预测值。前面的例子非常有限，因为我们不可能把所有的story都写完。
+- policy,基于DNN预测：KerasPolicy:tracker state1,tracker state2,tracker state3,通过LSTM把其中的一个LSTM拿出来通过一个全连接后进行softmax输出之后呢实际上是一个对应的action。
+- Policy:基于编程：FormPolicy:表单，类。方法去做事，灵活
+- Policy Ensemble:所有的Policy同时预测，按照得分取结果，得分同时按照优先级取结果。 
+- Rasa是一个工业级产品：RPC式组件实现：Core/NLU/Action都可以本地调用也可以远程RPC
+- stracker store:radis
+- locker store:用户说了其他话，极大可能不去获取
+- cloud model storage: 云存储模型，更新，卸载等
+- 端到端测试：story->
+- 交互式学习：预测对和错，训练数据
+- Rasa X:可视化界面：分享等改善，表现不好，就去标注数据进行训练，端到端，跟踪观察怎么失败并提高，不断这种当时去提高准确度。
+- rasa是：企业级应用
+- rasa多个对话是基于监督：规则是为了保证他确定是规则的情况下更准确更高效的去处理，用DNN的方法与预测也是可以，并不一定百分百的可以。如果他是基于规则，否则为了泛化能力更强，本质上基于监督，规则能解决部分问题，不能解决所有问题。
 对话状态机：story里面，如用户说了某句话，意图和词槽就是状态的一部分，执行的动作也是状态的一部分，靠用户和机器交互去更改相应状态，是训练出来的，不是人工规则去生成的。action根据实际延误需要去调用。自动生成状态，根据状态去训练，这是一个环形过程。
 rasa NLU和NLG模块能否独立使用，GPT3比较能力如何：是独立的，NLU可使用本地的，也可以告诉他一个网址去请求，他会去请求，他会渲染那个模板，值回传过来，NLG基于模板，rasa主体是任务型的，任何一个模板中去选择实现个性化，千人千面。
 rasa集成最新算法：值和类，格式输出即可。
