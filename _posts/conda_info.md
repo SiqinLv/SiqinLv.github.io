@@ -1,12 +1,14 @@
-Linux:
-查看当前Cuda的版本，即实际安装的Cuda版本：nvidia-smi
-查看所有环境：conda env list
-退出虚拟环境：conda deactivate
-创建虚拟环境：conda create -n 虚拟环境名字 python=版本号 （2.7 / 3.6 / 3.7/ 3.8等可用的版本）
-删除虚拟环境：conda remove -n 虚拟环境的名字 --all
-切换环境：source activate 名字
-GPU测试：
-pytorch:
+## Linux:
+>- 查看当前Cuda的版本，即实际安装的Cuda版本：nvidia-smi
+>- 查看所有环境：conda env list
+>- 退出虚拟环境：conda deactivate
+>- 创建虚拟环境：conda create -n 虚拟环境名字 python=版本号 （2.7 / 3.6 / 3.7/ 3.8等可用的版本）
+>- 删除虚拟环境：conda remove -n 虚拟环境的名字 --all
+>- 切换环境：source activate 名字
+### **GPU测试：**
+<hr/>
+*** pytorch:***
+
 ```python
 import torch
 import torch.nn as nn
@@ -122,7 +124,10 @@ pred_y = torch.max(test_output, 1)[1].data.squeeze()
 accuracy = sum(pred_y == test_y) / test_y.size(0)
 print('Test Acc: %.4f' % accuracy)
 ```
-tensorflow:
+
+<hr/>
+
+*** tensorflow测试: ***
 ```python
 # import tensorflow as tf
 # if tf.test.gpu_device_name():
@@ -141,8 +146,16 @@ b = tf.constant([1.0, 2.0], name='b')
 result = tf.add(a,b, name='add')
 print(result)
 
-
 ```
+
+<hr/>
+***paddlepaddle测试：***
+```python
+import paddle
+r = paddle.fluid.is_compiled_with_cuda()
+print(r)
+```
+
 paddle paddle:
 Window：
 切换环境：conda activate 名字
