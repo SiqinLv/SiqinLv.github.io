@@ -136,15 +136,38 @@ print('Test Acc: %.4f' % accuracy)
 #     print("Please install GPU version of TF")
 import tensorflow as tf
 
-tensorflow_version = tf.__version__
-gpu_available = tf.test.is_gpu_available()
+# tensorflow_version = tf.__version__
+# gpu_available = tf.test.is_gpu_available()
+#
+# print('tensorflow version:',tensorflow_version, '\tGPU available:', gpu_available)
+#
+# a = tf.constant([1.0, 2.0], name='a')
+# b = tf.constant([1.0, 2.0], name='b')
+# result = tf.add(a,b, name='add')
+import tensorflow as tf
+print('Tensorflow Version: {}'.format(tf.__version__))
 
-print('tensorflow version:',tensorflow_version, '\tGPU available:', gpu_available)
+tf.debugging.set_log_device_placement(True)
+import os
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0" # 选择ID为0的GPU
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+gpus = tf.config.experimental.list_physical_devices('GPU')
 
-a = tf.constant([1.0, 2.0], name='a')
-b = tf.constant([1.0, 2.0], name='b')
-result = tf.add(a,b, name='add')
-print(result)
+
+(train_image, train_lable), (test_image, test_label) = tf.keras.datasets.fashion_mnist.load_data()
+train_image = train_image/255
+test_image = test_image/255
+model = tf.keras.Sequential()
+model.add(tf.keras.layers.Flatten(input_shape=(28,28)))  # 28*28
+model.add(tf.keras.layers.Dense(128, activation='relu'))
+model.add(tf.keras.layers.Dense(10, activation='softmax'))
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['acc']
+)
+model.evaluate(test_image, test_label)
 
 ```
 
