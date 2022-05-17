@@ -1,4 +1,4 @@
-## Linux:
+## Linux环境下:
 >- 查看当前Cuda的版本，即实际安装的Cuda版本：nvidia-smi
 >- 查看所有环境：conda env list
 >- 退出虚拟环境：conda deactivate
