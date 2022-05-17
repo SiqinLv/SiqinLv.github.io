@@ -6,7 +6,8 @@
 >- 删除虚拟环境：conda remove -n 虚拟环境的名字 --all
 >- 切换环境：source activate 名字
 #### GPU测试：
-*** 判断可行性:  ***
+*** 判断可行性: 
+
 <hr/>
 ```python
 import torch
@@ -201,7 +202,7 @@ print(r)
 >- 切换环境：conda activate 名字
 ### GPU测试：
 >- 查看显卡： lspci \| grep -i nvidia
->- ** Conda安装tensorflow:conda install tensorflow-gpu 
+>- * Conda安装tensorflow:conda install tensorflow-gpu
 >>- *** 依赖包：
 >>>- **** conda install cudatoolkit
 >>>- **** conda install cudnn
