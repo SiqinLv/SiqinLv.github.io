@@ -6,3 +6,5 @@ Linux:
 切换环境：source activate 名字
 Window：
 切换环境：conda activate 名字
+GPU测试：
+查看显卡： lspci | grep -i nvidia
