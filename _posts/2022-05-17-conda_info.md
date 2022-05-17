@@ -172,3 +172,5 @@ print(r)
 >>>>- ****安装 paddle_bfloat：wget https://files.pythonhosted.org/packages/8a/8e/f2b5a82551f1397c6496f47d588b6fdd4811b720d0812effe368bec30b97/paddle_bfloat-0.1.2-cp37-cp37m-manylinux_2_27_x86_64.whl****
 >>>>- ****将paddle_bfloat-0.1.2-cp37-cp37m-manylinux_2_27_x86_64.whl名称改为paddle_bfloat-0.1.2-cp37-cp37m-linux_x86_64.whl****
 >>>>- ****pip install paddle_bfloat-0.1.2-cp37-cp37m-linux_x86_64.whl****
+## 其他：
+>- tensorflow包下载：http://mirrors.aliyun.com/pypi/simple/tensorflow-gpu/
