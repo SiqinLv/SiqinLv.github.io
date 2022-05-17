@@ -148,6 +148,11 @@ Window：
 切换环境：conda activate 名字
 GPU测试：
 查看显卡： lspci | grep -i nvidia
+Conda安装pytorch：看官网即可
 Conda安装tensorflow:conda install tensorflow-gpu
-Paddlepaddle安装:pip3 install paddlepaddle==1.4.1 -i
+依赖包：
+conda install cudatoolkit
+conda install cudnn
+Conda安装Paddlepaddle:pip3 install paddlepaddle==1.4.1 -i
 - 但是报错
+查看本机操作系统和位数信息：uname -m && cat /etc/*release
