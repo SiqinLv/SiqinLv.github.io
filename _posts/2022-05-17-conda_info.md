@@ -7,8 +7,8 @@
 >- 切换环境：source activate 名字
 #### GPU测试：
 *** 判断可行性: 
-
 <hr/>
+
 ```python
 import torch
 print("torch version:",torch.__version__)
@@ -23,10 +23,11 @@ gpu_ok=tf.test.is_gpu_available()  #输出gpu可否使用（True/False）
 print("tensorflow版本",version)
 print("GPU是否可用",gpu_ok)
 print("tensorflow中cuda是否可用",tf.test.is_built_with_cuda())  # 判断CUDA是否可用（True/False）
-```
 
+```
 <hr/>
-*** pytorch: ***
+
+#### pytorch测试:
 
 ```python
 import torch
