@@ -6,7 +6,8 @@
 >- 删除虚拟环境：conda remove -n 虚拟环境的名字 --all
 >- 切换环境：source activate 名字
 #### GPU测试：
-*** 判断可行性: ***
+*** 判断可行性:  ***
+<hr/>
 ```python
 import torch
 print("torch version:",torch.__version__)
@@ -24,7 +25,7 @@ print("tensorflow中cuda是否可用",tf.test.is_built_with_cuda())  # 判断CUD
 ```
 
 <hr/>
-*** pytorch:***
+*** pytorch: ***
 
 ```python
 import torch
@@ -200,16 +201,16 @@ print(r)
 >- 切换环境：conda activate 名字
 ### GPU测试：
 >- 查看显卡： lspci \| grep -i nvidia
->- **Conda安装tensorflow:conda install tensorflow-gpu**
->>- ***依赖包***：
->>>- ****conda install cudatoolkit****
->>>- ****conda install cudnn****
->>- ***paddlePaddle安装:***
+>- ** Conda安装tensorflow:conda install tensorflow-gpu 
+>>- *** 依赖包：
+>>>- **** conda install cudatoolkit
+>>>- **** conda install cudnn
+>>- *** paddlePaddle安装:
 >>>- Conda安装Paddlepaddle:pip3 install paddlepaddle==1.4.1 -i https://pypi.douban.com/simple 会报错
->>>- ***解决方案：***
+>>>- *** 解决方案：
 >>>>- 参考网址：https://github.com/PaddlePaddle/Paddle/issues/40559
->>>>- ****安装 paddle_bfloat：wget https://files.pythonhosted.org/packages/8a/8e/f2b5a82551f1397c6496f47d588b6fdd4811b720d0812effe368bec30b97/paddle_bfloat-0.1.2-cp37-cp37m-manylinux_2_27_x86_64.whl****
->>>>- ****将paddle_bfloat-0.1.2-cp37-cp37m-manylinux_2_27_x86_64.whl名称改为paddle_bfloat-0.1.2-cp37-cp37m-linux_x86_64.whl****
->>>>- ****pip install paddle_bfloat-0.1.2-cp37-cp37m-linux_x86_64.whl****
+>>>>- **** 安装 paddle_bfloat：wget https://files.pythonhosted.org/packages/8a/8e/f2b5a82551f1397c6496f47d588b6fdd4811b720d0812effe368bec30b97/paddle_bfloat-0.1.2-cp37-cp37m-manylinux_2_27_x86_64.whl
+>>>>- **** 将paddle_bfloat-0.1.2-cp37-cp37m-manylinux_2_27_x86_64.whl名称改为paddle_bfloat-0.1.2-cp37-cp37m-linux_x86_64.whl
+>>>>- **** pip install paddle_bfloat-0.1.2-cp37-cp37m-linux_x86_64.whl
 ## 其他：
 >- tensorflow包下载：http://mirrors.aliyun.com/pypi/simple/tensorflow-gpu/
