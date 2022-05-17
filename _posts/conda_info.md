@@ -148,11 +148,14 @@ Window：
 切换环境：conda activate 名字
 GPU测试：
 查看显卡： lspci | grep -i nvidia
-Conda安装pytorch：看官网即可
 Conda安装tensorflow:conda install tensorflow-gpu
 依赖包：
 conda install cudatoolkit
 conda install cudnn
 Conda安装Paddlepaddle:pip3 install paddlepaddle==1.4.1 -i
 - 但是报错
-查看本机操作系统和位数信息：uname -m && cat /etc/*release
+解决方案：
+- 参考网址：https://github.com/PaddlePaddle/Paddle/issues/40559
+- 安装 paddle_bfloat：wget https://files.pythonhosted.org/packages/8a/8e/f2b5a82551f1397c6496f47d588b6fdd4811b720d0812effe368bec30b97/paddle_bfloat-0.1.2-cp37-cp37m-manylinux_2_27_x86_64.whl
+- 将paddle_bfloat-0.1.2-cp37-cp37m-manylinux_2_27_x86_64.whl名称改为paddle_bfloat-0.1.2-cp37-cp37m-linux_x86_64.whl
+- pip install paddle_bfloat-0.1.2-cp37-cp37m-linux_x86_64.whl
