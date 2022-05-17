@@ -6,7 +6,7 @@
 >- 删除虚拟环境：conda remove -n 虚拟环境的名字 --all
 >- 切换环境：source activate 名字
 #### GPU测试：
-*** 判断可行性:***
+*** 判断可行性: ***
 ```python
 import torch
 print("torch version:",torch.__version__)
@@ -164,12 +164,12 @@ import tensorflow as tf
 print('Tensorflow Version: {}'.format(tf.__version__))
 
 tf.debugging.set_log_device_placement(True)
-import os
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "0" # 选择ID为0的GPU
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
-gpus = tf.config.experimental.list_physical_devices('GPU')
+# import os
+# os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+# os.environ["CUDA_VISIBLE_DEVICES"] = "0" # 选择ID为0的GPU
+# import os
+# os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+# gpus = tf.config.experimental.list_physical_devices('GPU')
 
 
 (train_image, train_lable), (test_image, test_label) = tf.keras.datasets.fashion_mnist.load_data()
