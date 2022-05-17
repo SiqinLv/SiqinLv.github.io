@@ -6,6 +6,23 @@
 >- 删除虚拟环境：conda remove -n 虚拟环境的名字 --all
 >- 切换环境：source activate 名字
 #### GPU测试：
+*** 判断可行性:***
+```python
+import torch
+print("torch version:",torch.__version__)
+print("torch if cuda is available:",torch.cuda.is_available())
+print('GPU name:'+ str(torch.cuda.get_device_name()))
+print('Number of cuda:'+ str(torch.cuda.device_count()))
+print("-------------------------------------------------------------")
+
+import tensorflow as tf
+version=tf.__version__  #输出tensorflow版本
+gpu_ok=tf.test.is_gpu_available()  #输出gpu可否使用（True/False）
+print("tensorflow版本",version)
+print("GPU是否可用",gpu_ok)
+print("tensorflow中cuda是否可用",tf.test.is_built_with_cuda())  # 判断CUDA是否可用（True/False）
+```
+
 <hr/>
 *** pytorch:***
 
@@ -50,7 +67,6 @@ train_loader = Data.DataLoader(dataset=training_data, batch_size=BATCH_SIZE,
                                shuffle=True)
 
 # 获取测试集dataset
-
 test_data = torchvision.datasets.MNIST(
     root='./mnist/',  # dataset存储路径
     train=False,  # True表示是train训练集，False表示test测试集
