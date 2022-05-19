@@ -206,8 +206,8 @@ print(r)
 >- Conda安装tensorflow:conda install tensorflow-gpu
 >>- ***依赖包：***
 >>>- ****conda install cudatoolkit****
->>>- ****conda install cudnn ****
->>- ***paddlePaddle安装: ***
+>>>- ****conda install cudnn****
+>>- ***paddlePaddle安装:***
 >>>- Conda安装Paddlepaddle:pip3 install paddlepaddle==1.4.1 -i https://pypi.douban.com/simple 会报错
 >>>- 解决方案：
 >>>>- 参考网址：https://github.com/PaddlePaddle/Paddle/issues/40559
