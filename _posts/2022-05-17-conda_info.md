@@ -7,8 +7,8 @@
 >- 切换环境：source activate 名字
 #### GPU测试：
  --- 
-***判断可行性:***
-<hr/>
+> 判断可行性:
+
 
 ```python
 import torch
