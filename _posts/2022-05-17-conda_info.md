@@ -200,8 +200,6 @@ r = paddle.fluid.is_compiled_with_cuda()
 print(r)
 ```
 
-## Window环境下：
->- 切换环境：conda activate 名字
 #### GPU测试：
 >- 查看显卡： `lspci | grep -i nvidia`
 >- Conda安装tensorflow:conda install tensorflow-gpu
@@ -217,5 +215,9 @@ print(r)
 >>>>- 将paddle_bfloat-0.1.2-cp37-cp37m-manylinux_2_27_x86_64.whl名称改为paddle_bfloat-0.1.2-cp37-cp37m-linux_x86_64.whl
 >>>>- pip install paddle_bfloat-0.1.2-cp37-cp37m-linux_x86_64.whl
 ---
+
+## Window环境下：
+>- 切换环境：conda activate 名字
+
 ### 其他：
 >- tensorflow包下载：http://mirrors.aliyun.com/pypi/simple/tensorflow-gpu/
