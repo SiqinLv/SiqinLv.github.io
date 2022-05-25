@@ -15,7 +15,12 @@
  ![alt 错误信息1](https://roundxin.github.io/images/image.png)
 >+ 解决方案：https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16后，选择visual c++ 14.0后，再次运行pip install --upgrade setuptools 
 >+ python -m pip install --upgrade pip后安装成功！satisfied!!!
-
+错误二：`RemoveError: 'setuptools' is a dependency of conda and cannot be removed from conda's operating environment.`
+>- 解决：`conda update --force conda`
+>>- conda update -n base -c defaults conda
+>>- conda install setuptools-62.3.2
+>>- conda install ujson
+>>- pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
 ```
 1. 如何定义问题和对应的意图
 >+ 在nlu中意图为faq/***后,ResponseSelector训练数据中的意图是group/intent的格式，需要在data/responses.yml中写入utter_faq/***普通意图intent，需要在domain中写入utter_***
