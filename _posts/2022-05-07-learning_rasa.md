@@ -21,6 +21,8 @@
 >>- conda install setuptools-62.3.2
 >>- conda install ujson
 >>- pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
+>>- pip install ujson-1.35-cp37-cp37m-win_amd64.whl
+>>- pip install rasa
 ```
 1. 如何定义问题和对应的意图
 >+ 在nlu中意图为faq/***后,ResponseSelector训练数据中的意图是group/intent的格式，需要在data/responses.yml中写入utter_faq/***普通意图intent，需要在domain中写入utter_***
