@@ -7,4 +7,10 @@
 - 重写jwt返回方法。
 - cors:跨域请求问题解决。
   - django-cors-header:配置白名单
-- 数据统计：APIView,获取：ListAPIview
+- 数据统计：APIView,获取：ListAPIview,保存：createPIView,也可重写：def get_queryset()
+- 视图集：ModelViewset->自定义方法完成业务逻辑实现。自动生成路由：Defaultrouter,register()注册操作，.url获取到生成的路由。actions(methods=[],detail=)装饰器
+- fastDFS客户端使用，用Fdfs_client()生成客户端对象。upload_by_buffer()上传操作。
+- celery:封装了详情页静态化方法。
+- sku表：事物使用。
+- 获取订单信息：多层嵌套序列化返回。
+- 权限表，分组表
