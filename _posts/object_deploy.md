@@ -17,7 +17,7 @@
 - nginx:
   - 基于异步的轻量级、高性能的web服务器、反向代理服务器、缓存服务器、电子邮件(IMAP/POP3)代理服务器。
 - 安装VSCode
-- 点击open folder 选择一个nginx本地使用的目录
-- 在页面中左侧导航选择extensions，找到SFTP
-- 若想用中文的，可下载Chinese(Simple)中文插件
-- 回到nginx目录，按键盘ctrl+shift+p显示搜索，输入SFTP,进行点击进入后,会生成一个远程连接的配置文件
+  - 点击打开文件夹 选择一个nginx本地使用的目录
+  - 在页面中左侧导航选择extensions，找到SFTP
+  - 若想用中文的，可下载中文（Simple）中文插件
+- 回到nginx目录，按键盘ctrl+shift+p显示搜索，输入SFTP，进行点击进入后，会生成一个远程连接的配置文件
