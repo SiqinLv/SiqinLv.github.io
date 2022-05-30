@@ -1,0 +1,6 @@
+- Elasticesearch集群（cluster）：
+- 原生就实现了集群，融合了复制集和分片。对每个分片来说，都可以作为他的副本，做他从的机器，从而达到备份和高可用的作用。
+- curl
+  - curl -x http请求方式 请求的路径url
+  - 带请求头：curl -x http请求方式 请求的路径url -H 请求头字段 -d 请求体数据
+    -例:curl -x http请求方式 请求的路径url -H 'Content-Type:application/json' -d 请求体数据
