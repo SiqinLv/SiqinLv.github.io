@@ -21,7 +21,7 @@
 >>- conda install setuptools-62.3.2
 >>- conda install ujson
 >>- pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
->>- pip install ujson-1.35-cp37-cp37m-win_amd64.whl
+>>- pip install ujson-1.35-cp37-cp37m-win_amd64.whl（需要自己下载）
 >>- pip install rasa
 ```
 1. 如何定义问题和对应的意图
