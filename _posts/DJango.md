@@ -20,3 +20,9 @@
 >- 输入命令后，默认进入虚拟环境了。
 >- 查看虚拟环境`workon`
 >- 切换虚拟环境：workon 虚拟环境名称
+>- 删除虚拟环境：rmvirtualenv 虚拟环境名称
+>- 不能删除正在使用的虚拟环境，需要退出当前环境:deactivate
+>- 创建Django项目
+  - django-adimin startproject name
+>- 创建子应用
+  - python manager.py startapp name
