@@ -29,10 +29,10 @@
  6.
  
 > pytorch环境
- 1.conda install pytorch torchvision torchaudio cudatoolkit=11.6 -c pytorch
+ 1. conda install pytorch torchvision torchaudio cudatoolkit=11.6 -c pytorch
 > tensorflow环境
- 1.wget http://mirrors.aliyun.com/pypi/simple/tensorflow-gpu/tensorflow_gpu-2.9.0rc2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
- 2.conda install tensorflow-gpu
+ 1. wget http://mirrors.aliyun.com/pypi/simple/tensorflow-gpu/tensorflow_gpu-2.9.0rc2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+ 2. conda install tensorflow-gpu
 #### pytorch环境
 >+ conda install pytorch torchvision torchaudio cudatoolkit=11.6 -c pytorch
 #### GPU测试：
