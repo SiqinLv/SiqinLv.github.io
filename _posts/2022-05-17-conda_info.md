@@ -5,6 +5,36 @@
 >- 创建虚拟环境：conda create -n 虚拟环境名字 python=版本号 （2.7 / 3.6 / 3.7/ 3.8等可用的版本）
 >- 删除虚拟环境：conda remove -n 虚拟环境的名字 --all
 >- 切换环境：source activate 名字
+### linux下环境安装：
+> 安装Anaconda3:
+ 1.wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
+ 2.bash Anaconda3-5.0.1-Linux-x86_64.sh
+ 3.查看是否安装成功：
+  `conda`
+ 4.更换清华源
+  `
+  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+  conda config --set show_channel_urls yes
+  # 更换中科大源
+  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/pkgs/main/  
+  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/pkgs/free/  
+  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/conda-forge/  
+  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/msys2/  
+  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/bioconda/  
+  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/menpo/
+  `
+ 5.升级pip
+  `python -m pip install --upgrade pip`
+ 6.
+ 
+> pytorch环境
+ 1.conda install pytorch torchvision torchaudio cudatoolkit=11.6 -c pytorch
+> tensorflow环境
+ 1.wget http://mirrors.aliyun.com/pypi/simple/tensorflow-gpu/tensorflow_gpu-2.9.0rc2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+ 2.conda install tensorflow-gpu
+#### pytorch环境
+>+ conda install pytorch torchvision torchaudio cudatoolkit=11.6 -c pytorch
 #### GPU测试：
  --- 
 > 判断可行性:
@@ -222,3 +252,9 @@ print(r)
 
 ### 其他：
 >- tensorflow包下载：[tensorflow安装包](http://mirrors.aliyun.com/pypi/simple/tensorflow-gpu/)
+>-运维人员用过的命名，可能是配置GPU啥的：
+ ![image](https://user-images.githubusercontent.com/70061450/171532772-646df603-df4c-4c29-9307-94c913564ff6.png)
+ ![image](https://user-images.githubusercontent.com/70061450/171533022-47a9fa98-5dd6-4aba-acaa-f38c860111d3.png)
+ ![image](https://user-images.githubusercontent.com/70061450/171533140-848fb3f3-818d-45d9-8f0d-0e8129e5cc7b.png)
+
+
