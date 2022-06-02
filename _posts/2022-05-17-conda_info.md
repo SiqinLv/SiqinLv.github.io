@@ -7,9 +7,9 @@
 >- 切换环境：source activate 名字
 ### linux下环境安装：
 > 安装Anaconda3:
- 1.wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
- 2.bash Anaconda3-5.0.1-Linux-x86_64.sh
- 3.查看是否安装成功：
+ 1. wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
+ 2. bash Anaconda3-5.0.1-Linux-x86_64.sh
+ 3. 查看是否安装成功：
   `conda`
  4.更换清华源
   `
