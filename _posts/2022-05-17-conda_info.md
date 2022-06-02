@@ -24,7 +24,7 @@
   conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/bioconda/  
   conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/menpo/
   `
- 5. 升级pip
+> 升级pip
   `python -m pip install --upgrade pip`
 > pytorch环境
  1. conda install pytorch torchvision torchaudio cudatoolkit=11.6 -c pytorch
