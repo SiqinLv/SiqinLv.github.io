@@ -11,7 +11,7 @@
  2. bash Anaconda3-5.0.1-Linux-x86_64.sh
  3. 查看是否安装成功：
   `conda`
- 4.更换清华源
+ 4. 更换清华源
   `
   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
@@ -24,10 +24,8 @@
   conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/bioconda/  
   conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/menpo/
   `
- 5.升级pip
+ 5. 升级pip
   `python -m pip install --upgrade pip`
- 6.
- 
 > pytorch环境
  1. conda install pytorch torchvision torchaudio cudatoolkit=11.6 -c pytorch
 > tensorflow环境
