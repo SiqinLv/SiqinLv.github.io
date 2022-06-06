@@ -12,8 +12,8 @@
  3. 查看是否安装成功：
   `conda`
  4. 镜像源</br>
-  - 恢复莫人源：`conda config --remove-key channels`
-  - 修改镜像源
+  - (镜像有问题的时候用)恢复默认源：`conda config --remove-key channels`
+  - 修改镜像源</br>
    `
    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
