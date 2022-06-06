@@ -11,19 +11,19 @@
  2. bash Anaconda3-5.0.1-Linux-x86_64.sh
  3. 查看是否安装成功：
   `conda`
- 4. 更换清华源
+ 4. 镜像源</br>
+  - 恢复莫人源：`conda config --remove-key channels`
+  - 修改镜像源
+   `
+   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge 
+   conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
   `
-  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-  conda config --set show_channel_urls yes
-  # 更换中科大源
-  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/pkgs/main/  
-  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/pkgs/free/  
-  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/conda-forge/  
-  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/msys2/  
-  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/bioconda/  
-  conda config --add channels https://mirrors.ustc.edu.cn/Anaconda/cloud/menpo/
-  `
+# 设置搜索时显示通道地址
+conda config --set show_channel_urls yes
+
+   `
 > 升级pip
   `python -m pip install --upgrade pip`
 > pytorch环境
