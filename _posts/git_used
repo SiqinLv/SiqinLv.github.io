@@ -33,3 +33,9 @@
 7. 提交
   - 第一次提交：`git push -u origin master` 也可用强制提交`git push -f origin master`
   - 之后提交：`git push origin master`
+8. 使用pycharm连接github
+  > File->settings->GitHub 点击add account登录github账号
+  > 若无法登录，在github中的添加令牌
+  > 个人令牌设置：
+  >> 设置->开发者设置->个人访问令牌，勾选所有选项并添加令牌
+
