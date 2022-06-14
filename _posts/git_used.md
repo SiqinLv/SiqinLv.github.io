@@ -57,4 +57,5 @@
 16. 项目的维护者管理pull请求
   > VCS->git->View Pull Requests
   > 查看pull请求信息:`stateopen ...`
+  
 参考来自[git和gitHub使用](https://zhuanlan.zhihu.com/p/145649307)
