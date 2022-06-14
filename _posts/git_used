@@ -30,3 +30,6 @@
     git init
     git remote add origin https://github.com/qqdb/example01.git
   `
+7. 提交
+  - 第一次提交：`git push -u origin master` 也可用强制提交`git push -f origin master`
+  - 之后提交：`git push origin master`
