@@ -38,4 +38,10 @@
   > 若无法登录，在github中的添加令牌
   > 个人令牌设置：
   >> 设置->开发者设置->个人访问令牌，勾选所有选项并添加令牌
-
+  >> 添加成功后会显示token，复制token在pycharm中使用token登录
+9. 配置git
+  > 在setting的面板中选择git,在面板内容处的path to Git executable：填入git可执行文件路径，如`D:\lvsiqin\APPlist\Git\bin\git.exe`
+10. 在pycharm工具栏选择VCS->Import into Version Control->Share Project GitHub后，上传本地代码到github上
+  > 也可将github上的代码克隆到本地VCS->Get from Version Control
+  >> 克隆自己的选择GitHub
+  >> 克隆别人的选择repository URL,并写入ul地址，和本地路径
