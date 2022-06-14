@@ -57,5 +57,21 @@
 16. 项目的维护者管理pull请求
   > VCS->git->View Pull Requests
   > 查看pull请求信息:`stateopen ...`
-  
+## 报坑解决：
+问题1：Push failed
+			Enumerating objects: 600, done.
+			Delta compression using up to 6 threads
+			RPC failed; curl 56 OpenSSL SSL_read: Connection was reset, errno 10054
+			send-pack: unexpected disconnect while reading sideband packet
+			Total 600 (delta 77), reused 0 (delta 0), pack-reused 0
+			the remote end hung up unexpectedly
+      
+解决1： 取消代理：`git config --global --unset http.proxy`和`git config --global --unset https.proxy`
+
+问题2：Push failed: Unable to access 'https://github.com/roundXin/rasa_query_vehicle_fault.git/': OpenSSL SSL_read: Connection was reset, errno 10054
+
+解决2：git config --global http.sslVerify "false"
+
+若以上都无法解决：在github项目下尝试页面下的命令
+
 参考来自[git和gitHub使用](https://zhuanlan.zhihu.com/p/145649307)
