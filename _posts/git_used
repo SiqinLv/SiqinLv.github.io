@@ -45,3 +45,16 @@
   > 也可将github上的代码克隆到本地VCS->Get from Version Control
   >> 克隆自己的选择GitHub
   >> 克隆别人的选择repository URL,并写入ul地址，和本地路径
+  >> 完成后会有读条
+11. 从pycharm中查看github: file->Open on GitHub
+12. 一般的Git操作：VCS->Git->...
+13. 参与一个GitHub项目：
+  > fork一个项目 Fork是GitHub存储库的副本，可在不影响原始项目的情况下更改代码。比如，https://github.com/scikit-learn/scikit-learn
+  > 进入 Pycharm 的版本控制界面VCS->Get from Version Control->GitHub-> ... clone后，等进度跑完我们会得到项目的仓库
+14. 查看项目参与者的操作日志 控制台下的log
+15. 项目参与者创建pull请求
+  > VCS->git->View Pull Resquests，在description填入pull请求
+16. 项目的维护者管理pull请求
+  > VCS->git->View Pull Requests
+  > 查看pull请求信息:`stateopen ...`
+参考来自[git和gitHub使用](https://zhuanlan.zhihu.com/p/145649307)
