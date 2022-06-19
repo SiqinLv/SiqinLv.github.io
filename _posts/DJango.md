@@ -47,3 +47,9 @@
   - from django.http import JsonResponse
     - return JsonResponse(data)  JsonResponse返回JSON形式的字符串
 >- 数据保存在客户端用cookie，保存在服务器用session
+>- 请求头：request.MET
+  - method:http请求的方法
+  - user：请求的用户对象
+  - path: 请求的页面路径
+  - encoding: 表示提交的编码方式
+  - FILES: 一个类似于字典的对象，包含所有的上传文件。
