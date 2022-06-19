@@ -41,4 +41,9 @@
     - view.py:视图相关
     - admin.py:和后台相关
     - app.py:和当前子应用相关
-
+>- json
+  - json.dumps 将字典转换为 JSON形式的字符串
+  - json.loads 将JSON形式的字符串转换成JSON
+  - from django.http import JsonResponse
+    - return JsonResponse(data)  JsonResponse返回JSON形式的字符串
+>- 数据保存在客户端用cookie，保存在服务器用session
