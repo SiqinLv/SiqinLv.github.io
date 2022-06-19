@@ -7,3 +7,6 @@
     - python -m pip uninstall pip setuptools
     - 升级pip：pip install --upgrade pip
     - 重新安装setuptools: pip install --upgrade setuptools 
+### Spacy安装：
+>- 安装命令：`pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz`
+>- 安装命令： pip install /Users/you/en_core_web_sm-3.0.0.tar.gz
