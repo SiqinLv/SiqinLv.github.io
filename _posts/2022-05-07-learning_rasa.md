@@ -16,7 +16,8 @@
 >+ 解决方案：https://visualstudio.microsoft.com/zh-hans/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16后，选择visual c++ 14.0后，再次运行pip install --upgrade setuptools 
 >+ python -m pip install --upgrade pip后安装成功！satisfied!!!
 错误二：`RemoveError: 'setuptools' is a dependency of conda and cannot be removed from conda's operating environment.`
->- 解决：`conda update --force conda`
+>- 解决：`conda update --force conda`   
+> 将conda-forge添加到搜索路径上》：conda config --append channels conda-forge
 >>- conda update -n base -c defaults conda
 >>- conda install setuptools-62.3.2
 >>- conda install ujson
