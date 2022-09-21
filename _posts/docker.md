@@ -24,4 +24,7 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
-# @参考文献：https://blog.csdn.net/m0_51338272/article/details/122801639
+* @参考文献：https://blog.csdn.net/m0_51338272/article/details/122801639 
+
+> 1.镜像安装conda
+>- 
