@@ -13,4 +13,15 @@
 
 > 4.镜像加速 Docker
 >- 阿里云官网->控制台->产品与服务->搜索容器->选择容器镜像服务->镜像工具->选择对应系统进行操作 注意：这里注意registry-mirrors的地址每个人都是不一样的，要查看页面上显示的地址
->- 例：```linux```
+>- 例：
+```
+>>- sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://gsi4aj17.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+# @参考文献：https://blog.csdn.net/m0_51338272/article/details/122801639
