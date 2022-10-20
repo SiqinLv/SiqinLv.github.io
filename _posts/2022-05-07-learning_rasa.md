@@ -1,6 +1,6 @@
 ***Rasa安装：***
 1. *教程：https://www.rasachatbot.com/1_Installation/*            
-2. _安装命令：***pip install rasa-x --extra-index-url https://pypi.rasa.com/simple***_ 
+2. _安装命令：**pip install rasa-x --extra-index-url https://pypi.rasa.com/simple**
 3. 在linux下：`pip install rasa-x -i https://pypi.rasa.com/simple`    instead to install the rasa-x package
 4. 安装时的报错信息1：Building wheels for collected packages: ujson,
 5. 解决方案：conda install json
@@ -37,7 +37,7 @@ Rasa运行：
 4.	运行网页客户端：Python -m http.server
 ```
 
-###系统案例：
+### 系统案例：
 ***报时机器人***
 >+	Rasa core是rasa体系中负责对话管理的部分，用于记录对话过程和选择下一个动作。机器学习驱动的对话管理引擎。
 >+	Domain:定义了对话机器人需要知道的所有信息，如意图intent、实体entity、词槽slot、动作action、表单from、回复response，意图和实体表示输入的范围。词槽和表单相当于内部的变量，用表征状态存储记忆。动作给定了模型的输出范围。回复字段为机器的回复模板，既为简单有为复杂动作的自然语言生成NLG步骤。Templetes是模板
