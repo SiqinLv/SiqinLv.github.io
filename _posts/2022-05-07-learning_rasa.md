@@ -1,14 +1,15 @@
 ***Rasa安装：***
 1. *教程：https://www.rasachatbot.com/1_Installation/*            
 2. _安装命令：**pip install rasa-x --extra-index-url https://pypi.rasa.com/simple**
-3. 在linux下：`pip install rasa-x -i https://pypi.rasa.com/simple`    instead to install the rasa-x package
-4. 安装时的报错信息1：Building wheels for collected packages: ujson,
-5. 解决方案：conda install json
-6. 安装时的报错信息2：ERROR: Command errored out with exit status 1: python setup.py egg_inf
-7. 解决方案：
+3. ***pip uninstall scikit-learn  conda install scikit-learn***
+4. 在linux下：`pip install rasa-x -i https://pypi.rasa.com/simple`    instead to install the rasa-x package
+5. 安装时的报错信息1：Building wheels for collected packages: ujson,
+6. 解决方案：conda install json
+7. 安装时的报错信息2：ERROR: Command errored out with exit status 1: python setup.py egg_inf
+8. 解决方案：
 >1. ___pip install --upgrade setuptools___
 >2. python -m pip install --upgrade pip
-8. 运行后会出现ERROR: Failed building wheel for ujson错误
+9. 运行后会出现ERROR: Failed building wheel for ujson错误
 >+ 解决方案：卸载ujson ，命令为conda uninstall ujson
 >+ 重新安装使用：***pip install rasa-x --extra-index-url https://pypi.rasa.com/simple***
 >+ 依然报错：
@@ -175,5 +176,7 @@ slots:
 - 在action的run方法中中写入词槽：`return [SlotSet('detail', detail if detail else [])]`
 - 获取词槽的方式：`tracker.get_slot('detail')`
 - rules中可以定义规则，在用户输入时匹配到对应规则则返回相应的动作，**一个规则只能写一个动作**。
+
+
 
 
