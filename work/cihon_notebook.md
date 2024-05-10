@@ -142,6 +142,29 @@
 + **对源码的安装**
 + - 对源码中```setup.py```文件安装
   - 1.先下载你要安装的包，并解压到磁盘下；
-  - 2.<b color='blue'>在linux中进入到该文件的setup.py 目录下</b> 或 <b color='blue'>在window上打开cmd，并切换到该目录下；</b>
+  - 2.<b style="color: deepskyblue">在linux中进入到该文件的setup.py 目录下</b> 或 <b style="color: deepskyblue">在window上打开cmd，并切换到该目录下；</b>
   - 3.执行：```python setup.py build```
   - 4.执行：``` python setup.py install```
++ **Linux设置用户登录超时(闲置时间): ```vim /etc/profile```,具体操作可自行百度**
++ **要将Conda虚拟环境打包并在其他电脑上使用，您可以执行以下步骤：**
++ ```sh
+	conda activate your_environment_name
+	conda list --export > environment.yml
+	# 安装yum环境的包
+	conda env create -f environment.yml
+	conda env update -f environment.yml
+  ```
++ **使用conda 指定环境去安装包**
++ conda install conda-pack
++ conda-pack -n llama2_lora_train -o llama2_lora_train.tar.gz
++ **解压缩**
+  ```sh
+  mkdir -p my_env # -p 是递归创建文件夹
+  tar -xzf my_env.tar.gz -C my_env # 解压tar.gz包，-C为指定路径
+  ```
++ **或打包conda环境的文件夹**
++ ```conda pack -p /explicit/path/to/my_env```
++ ** 文件操作
++ - 压缩：```tar -czvf archive.tar.gz /path/to/folder```
++ - 解压：```tar -xzvf archive.tar.gz```
++ - 解压：```tar -xzvf archive.tar.gz -C /path/to/destination```
