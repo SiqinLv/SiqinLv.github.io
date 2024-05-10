@@ -142,6 +142,6 @@
 + **对源码的安装**
 + - 对源码中```setup.py```文件安装
   - 1.先下载你要安装的包，并解压到磁盘下；
-  - 2.***在linux中进入到该文件的setup.py 目录下*** 或 ***在window上打开cmd，并切换到该目录下；***
+  - 2.<b color='blue'>在linux中进入到该文件的setup.py 目录下</b> 或 <b color='blue'>在window上打开cmd，并切换到该目录下；</b>
   - 3.执行：```python setup.py build```
   - 4.执行：``` python setup.py install```
