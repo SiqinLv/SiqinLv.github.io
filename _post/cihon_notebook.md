@@ -6,3 +6,11 @@
 + ```cp /root/lsq/code/维修案例集0827/* /root/lsq/code/new_day1/upload/ -rf```
 + **查看cpu核数**
 + ```cat /proc/cpuinfo| grep "processor"| wc -l```
++ **查看文件个数**
++  ls -l |grep "^-"|wc -l
++  **查看文件夹个数**
++  ls -l | grep "^d" | wc -l
+
++ **pip 国内镜像**
++ https://pypi.douban.com/simple
++ 
