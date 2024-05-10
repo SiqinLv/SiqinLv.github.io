@@ -99,6 +99,7 @@
 
 + **服务器安装代理后访问方式：
 + ```curl --proxy http://127.0.0.1:7890  https://www.google.com.hk/```
++ 代理结果检验: ```curl --proxy http://192.168.4.224:7891  https://www.google.com.hk/```
 
 + **若误操作~/.bashrc，并~/.bashrc source了，可通过python代码修改并source**
 + ```py
@@ -137,15 +138,36 @@
 + 为已有的环境下载kernel文件：```conda install -n 已存环境名称 ipykernel```
 + 将该环境写入jupyter的kernel中：
 + ```python -m ipykernel install --user --name 环境名称 --display-name "你想在jupyter中显示的该环境的名称"```
++ **删除conda环境**
++ ```conda remove -n your_env_name --all```
+
 
 + **pip 国内镜像** 
     >- 豆瓣：-i https://pypi.douban.com/simple
     >- 阿里：-i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
     >- 清华：-i https://pypi.tuna.tsinghua.edu.cn/simple/
-    >- 豆瓣：-i pip install py2neo -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+    >- 豆瓣：-i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
 
 + **安装neo4j**
-+ ```pip install neo4j-driver```
++ ```pip install neo4j-driver```(本人这种用的比较多) 或 ```pip install py2neo```
++ **图谱删除所有**
++ ```MATCH (n) OPTIONAL MATCH (n)- [r]- () DELETE n,r```
+  - **修改neo4j 标签：**
+    ```sh
+	MATCH (n:OldLabel)
+	WITH n
+	SET n:NewLabel
+	REMOVE n:OldLabel
+	RETURN n;
+    ```
+  - **图谱标签修改**
+    ```match(n:`方案ID`) remove n:`方案ID` set n:`解决方案```
+  - **图谱数据修改**
+    ```sh
+    例1：match(n) where n.name='测量EN27B–1针脚到前舱电器盒UH-6针脚之间导线是否导通。' and n.dtc='P001500'  set n.name='aa' return n
+    例2：match(n) where n.name contains '23-09-15_15-19-02.png' set n.name='aa'
+    ```
+    
 + **清空GPU显存**
 + 查看显存看空间：```nvidia-smi```
   >- 查看显存占用情况：```fuser -v /dev/nvidia*```
@@ -192,11 +214,91 @@
 + **查看核修改conda 包安装的超时时间**```conda config --show-sources```
 
   
-**修改neo4j 标签：**
+
+**向量数据库**
+  ```sh
+	1.pinecone(使用较多);
+	2、weavviate;
+	3.Faiss;
+	4.chroma
+  ```
+**远程文件传输**
+  - scp -r /data/lsq/code/llama2/Llama2-Chinese-main/ appuser@10.140.143.3:/data/lsq/code/llama2/Llama2-Chinese-main # -r为文件递归上传
+
+- **指定cuda包环境路径**
+  ```sh
+    export LD_LIBRARY_PATH=/opt/anaconda3/envs/llama2_chinese/lib/python3.9/site-packages/nvidia/cuda_runtime/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=/opt/anaconda3/envs/llama2_chinese/lib/python3.9/site-packages/nvidia/cublas/lib:$LD_LIBRARY_PATH
+  ```
+
+
+- **解决conda环境问题**
+- 使用```vim ~/.condarc```查看源
+  ```base
+	channels:
+	- https://pypi.tuna.tsinghua.edu.cn/simple
+	- https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/
+	- https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro/
+	- https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+	- https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+	- https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+	- https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+	- http://mirrors.aliyun.com/pypi/simple/
+	- defaults
+	show_channel_urls: true
+  ```
+  可用：```ssl_verify: false``` 和 ```show_channel_urls: true```
+
+- 设置mysql排序结果的方式
+  ```mysql
+     sql select title,content from gb_gq_table where title like '%M8夏天开空调不制冷是什么原因%' or  title like '%夏天开空调%' or  title like '%空调%' order by case when title like '%M8夏天开空调不制冷是什么原因%' then 1 else 2 end limit 2
+  ```
+- **模型使用vllm推理**
+  ```
+  CUDA_VISIBLE_DEVICES=1  nohup python -m vllm.entrypoints.openai.api_server --model /data/jupyter_workspaces/wanglina/models/llama2-Chinese-13b-Chat_0221 --host 0.0.0.0 --port 6666 --tensor-parallel-size 1 --max-parallel-loading-workers 8 --tokenizer-mode auto &
+  ```
+
+- **手机端mlc-llm安装(目前没用到)**
+  先创建conda环境：```conda create -n mlc-chat-venv -c mlc-ai -c conda-forge mlc-chat-cli-nightly```
+  完整版环境安装：```conda create -n mlc-chat-venv -c conda-forge -c  mlc-ai -c mlc-chat-cli-nightly "cmake>=3.24" "llvmdev>=15" rust python=3.11```
+  
+- **再下载源码并安装**
+  ```sh
+	# 项目官地址:https://llm.mlc.ai/docs/install/tvm.html
+	# clone from GitHub
+	git clone --recursive https://github.com/mlc-ai/mlc-llm.git && cd mlc-llm/  # 在本地计算机上运行完毕后上传到服务器上，因为里面有很多github的依赖包
+	# create build directory
+	mkdir -p build && cd build
+	# generate build configuration
+	python3 ../cmake/gen_cmake_config.py
+	# build `mlc_chat_cli`
+	cmake .. && cmake --build . --parallel $(nproc) && cd ..
+  ```
+  查看路径：```llvm-config --libdir```
+  ```cmake -G "Ninja" -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;compiler-rt;" ../llvm```
+  **重点**
+  ```sh
+	# controls default compilation flags
+	echo "set(CMAKE_BUILD_TYPE RelWithDebInfo)" >> config.cmake
+	# LLVM is a must dependency
+	echo "set(USE_LLVM \"llvm-config --ignore-libllvm --link-static\")" >> config.cmake
+	echo "set(HIDE_PRIVATE_SYMBOLS ON)" >> config.cmake
+	# GPU SDKs, turn on if needed
+	echo "set(USE_CUDA   OFF)" >> config.cmake
+	echo "set(USE_METAL  OFF)" >> config.cmake
+	echo "set(USE_VULKAN OFF)" >> config.cmake
+	echo "set(USE_OPENCL OFF)" >> config.cmake
+	echo "set(USE_LIBBACKTRACE OFF)" >> config.cmake
+  ```
+  **报-static-libstdc++时,编译解决方案为**
+  ```g++ -std=c++11```
+
+
+
+echo "set(DCMAKE_VERBOSE_MAKEFILE ON)" >> config.cmake
+
+
+**不用conda activte 环境名切换时，可用
 ```sh
-MATCH (n:OldLabel)
-WITH n
-SET n:NewLabel
-REMOVE n:OldLabel
-RETURN n;
+
 ```
