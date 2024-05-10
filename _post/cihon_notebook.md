@@ -14,7 +14,7 @@
 +  ```select * from model_repair_handbook where content REGEXP '\\.png(?!"\\/>|\\?Expires)'```
 +  **服务运行命令**
 +  ```gunicorn -w 1 -b 0.0.0.0:8082 fileServer2:app```
-+  **有空格或特殊符文件拷贝**
++  **有空格或特殊符文件拷贝 用双引号包起来**
 +  ```cp /root/广本知识图谱数据/维修案例数据集/维修案例集0827/"16M缤智RU1后尾 门无法开启.docx" /root/lsq/new_day1/flask_file/common/```
 +  **删除所有gunicron进程**
 +  ```kill -9 `ps -ef|grep gunicorn|awk '{print $2}'````
@@ -61,6 +61,12 @@
 
 
 
++ **conda 虚拟环境添加到jupyter内核环境中**
++ 为已有的环境下载kernel文件：```conda install -n 已存环境名称 ipykernel```
++ 将该环境写入jupyter的kernel中：
++ ```python -m ipykernel install --user --name 环境名称 --display-name "你想在jupyter中显示的该环境的名称"```
+
 + **pip 国内镜像**
 + https://pypi.douban.com/simple
-+ 
++ **安装neo4j**
++ ```pip install neo4j-driver```
