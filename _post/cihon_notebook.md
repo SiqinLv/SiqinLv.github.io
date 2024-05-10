@@ -70,3 +70,9 @@
 + https://pypi.douban.com/simple
 + **安装neo4j**
 + ```pip install neo4j-driver```
++ **清空GPU显存**
++ 查看显存看空间：```nvidia-smi```
+  >- 查看显存占用情况：```fuser -v /dev/nvidia*```
+	>- 清空所有占用显存的进程：```sudo fuser -v /dev/nvidia* |awk '{for(i=1;i<=NF;i++)print "kill -9 " $i;}' | sudo sh```
+	>- 要实时显示GPU占用情况，你可以使用以下命令运行```nvidia-smi```或```watch -n 1 nvidia-smi  或 nvitop --colorful```
+
