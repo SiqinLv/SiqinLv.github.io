@@ -132,7 +132,8 @@
 + **pip 国内镜像** 
     >- 豆瓣：-i https://pypi.douban.com/simple
     >- 阿里：-i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-    >- 清华：https://pypi.tuna.tsinghua.edu.cn/simple/
+    >- 清华：-i https://pypi.tuna.tsinghua.edu.cn/simple/
+    >- 豆瓣：-i pip install py2neo -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
 
 + **安装neo4j**
 + ```pip install neo4j-driver```
@@ -141,6 +142,7 @@
   >- 查看显存占用情况：```fuser -v /dev/nvidia*```
 	>- 清空所有占用显存的进程：```sudo fuser -v /dev/nvidia* |awk '{for(i=1;i<=NF;i++)print "kill -9 " $i;}' | sudo sh```
 	>- 要实时显示GPU占用情况，你可以使用以下命令运行```nvidia-smi```或```watch -n 1 nvidia-smi  或 nvitop --colorful```
+  	>- fuser命令需要使用```yum install -y psmisc```安装,其中还包括killall、pgrep包，-y为自动确定
 
 + **对源码的安装**
 + - 对源码中```setup.py```文件安装
@@ -176,3 +178,7 @@
 + - 镜像打包为tar包：```docker save -o my_image.tar my_image:tag```
 + - 加载打包的镜像：```docker load -i my_image.tar```
 + - 容器运行：```docker run -d --name my_new_container my_image:tag```
+
++ **显示可用的conda 源**```conda config --show channels```
++ **查看核修改conda 包安装的超时时间**```conda config --show-sources```
++ 
