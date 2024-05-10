@@ -12,8 +12,7 @@
 +  ```ls -l | grep "^d" | wc -l```
 +  **mysql 正则查询**
 +  ```select * from model_repair_handbook where content REGEXP '\\.png(?!"\\/>|\\?Expires)'```
-+  **服务运行命令**
-+  ```gunicorn -w 1 -b 0.0.0.0:8082 fileServer2:app```
+
 +  **有空格或特殊符文件拷贝 用双引号包起来**
 +  ```cp /root/广本知识图谱数据/维修案例数据集/维修案例集0827/"16M缤智RU1后尾 门无法开启.docx" /root/lsq/new_day1/flask_file/common/```
 +  **删除所有gunicron进程**
@@ -98,10 +97,24 @@
 	subprocess.run(['/bin/bash', '-c', 'source ~/.bashrc'])或subprocess.run(['/bin/bash', '-c', 'source ~/.bashrc'], shell=True)
   ```
 + 但在已开启的页面无效，另启一个新页面，即可正常使用
+  
 + **MySQL 错误代码:1055 解决方案（推荐！！)**
 + 在mysql查询控制台：```SET sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'```
 
++ **虚拟环境备份：**
++ ```conda pack -n env_name -o env_name.tar.gz```
++ 启动docker容器，将压缩包拷贝进去
++ ```cp llama2_lora_train_env.tar.gz 085a5c497b7a:/opt/conda/envs/```
 
++ **目前用的gunicron较多的版本：**
++ ```gunicorn==20.0.4```
++ 注意在使用gunicorn前，需要将flask代码中的app.run部分的代码注释掉
+
++ **模型运行：**
++ ```nohup gunicorn -w 3 -k gevent --threads 5 --worker-connections 100 --keep-alive 5  -b 0.0.0.0:8080 app_vllm240105_3:app &```
++ gevent 没有的情况下需自行安装，否则就用以下方式启动
++ **服务运行命令**
++  ```gunicorn -w 1 -b 0.0.0.0:8082 fileServer2:app```
 
 + **conda 虚拟环境添加到jupyter内核环境中**
 + 为已有的环境下载kernel文件：```conda install -n 已存环境名称 ipykernel```
