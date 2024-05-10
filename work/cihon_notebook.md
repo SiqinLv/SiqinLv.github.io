@@ -165,6 +165,6 @@
 + **或打包conda环境的文件夹**
 + ```conda pack -p /explicit/path/to/my_env```
 + ** 文件操作
-+ - 压缩：```tar -czvf archive.tar.gz /path/to/folder```
-+ - 解压：```tar -xzvf archive.tar.gz```
-+ - 解压：```tar -xzvf archive.tar.gz -C /path/to/destination```
+  - 压缩：```tar -czvf archive.tar.gz /path/to/folder```
+  - 解压：```tar -xzvf archive.tar.gz```
+  - 解压：```tar -xzvf archive.tar.gz -C /path/to/destination```
