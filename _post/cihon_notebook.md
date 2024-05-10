@@ -22,17 +22,44 @@
 +  ```rm ./* -rf```
 +  **jupyter 安装**
 +  ```pip install jupyter```
++  运行 jupyter
 +  ```jupyter notebook --ip=0.0.0.0 --port=8083 --allow-root```
-+  浏览器不弹出启动：
++   浏览器不弹出启动：
 +  ```jupyter notebook --no-browser```
 + jupyterlab 安装
-+  ```pip install jupyterlab```
-+  python代码：```
-    from jupyter_server.auth import passwd
-    passwd()
-    # Enter password:
-    # Verify password:
-     ```(python)
++  ```(python) pip install jupyterlab```
++ 进入python代码编辑：
++ ```from jupyter_server.auth import passwd```
++ ```passwd()```
++ 退出python后jupyterlab配置文件生成：
++ ```jupyter lab --generate-config```
++ 生成的配置路径一般在：
++ ```/root/.jupyter/jupyter_lab_config.py```
++ jupyterlab 前台运行
++ ```jupyter lab --allow-root```
++ jupyterlab 后台运行
++ ```nohup jupyter lab --allow-root --port 8888 &```
++ 访问方式：```http://192.168.4.225:8891```
++ **文件压缩 linux unzip 中文解压缩**
++  指定解压编码：-O:```unzip -O gbk *.zip```
++  指定解压路径 -d：```unzip -O GBK 影酷_A58_20230116.zip -d ../../unzip文件/酷影/```
++  **文件压缩**
++  -r(文件递归)，-f(不显示提示信息)：```zip -rf zipunzip.zip GM6 GM8 GS8 影豹 影酷```
++  **删除乱码的文件**
++  查看当前目录下的文件```ls -i```
++ 删除乱码文件 ```find -inum 乱码目录前的数字编号 -delete```
++ 删除乱码文件夹 ```find -inum 乱码目录前的数字编号 -exec rm -rf {} \```
+
+
+
+
+
+
+
+
+
+
+
 
 + **pip 国内镜像**
 + https://pypi.douban.com/simple
