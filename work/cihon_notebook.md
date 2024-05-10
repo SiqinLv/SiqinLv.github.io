@@ -30,7 +30,15 @@
 +  后台运行：```nohup jupyter notebook --ip=0.0.0.0 --port=9999 --allow-root &```
 +   浏览器不弹出启动：
 +  ```jupyter notebook --no-browser```
-+ jupyterlab 安装
++  **windows下**:
+  ```sh
+	d:
+	cd D:\lvsiqin\pycharm_code\jupyter
+	conda activate langchain_env
+	jupyter notebook
+  ```
+
++ **jupyterlab 安装**
 +  ```(python) pip install jupyterlab```
 + 进入python代码编辑：
 + ```from jupyter_server.auth import passwd```
@@ -43,6 +51,7 @@
 + ```jupyter lab --allow-root```
 + jupyterlab 后台运行
 + ```nohup jupyter lab --allow-root --port 8888 &```
+
 
 + 访问方式：```http://192.168.4.225:8891```
 + **文件压缩 linux unzip 中文解压缩**
@@ -181,4 +190,13 @@
 
 + **显示可用的conda 源**```conda config --show channels```
 + **查看核修改conda 包安装的超时时间**```conda config --show-sources```
-+ 
+
+  
+**修改neo4j 标签：**
+```sh
+MATCH (n:OldLabel)
+WITH n
+SET n:NewLabel
+REMOVE n:OldLabel
+RETURN n;
+```
