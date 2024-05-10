@@ -129,6 +129,7 @@
 + **模型服务运行：**
 + ```nohup gunicorn -w 3 -k gevent --threads 5 --worker-connections 100 --keep-alive 5  -b 0.0.0.0:8080 app_vllm240105_3:app &```
 + ```nohup gunicorn -w 3 --threads 5 --worker-connections 100 --keep-alive 5  -b 0.0.0.0:7777 JL_embedding_neo4j:app &```
++ ```nohup gunicorn -w 3 --threads 5 --worker-connections 100 --keep-alive 5  -b 0.0.0.0:8086 GB02:app &```
 +  ```gunicorn -w 1 -b 0.0.0.0:8082 fileServer2:app```
 + gevent 没有的情况下需自行安装，否则就用以下方式启动
 +  ** conda 环境切换
@@ -296,11 +297,69 @@
   ```g++ -std=c++11```
   启动：```python -m mlc_chat.rest --model llama2 --lib-path /data/lvsiqin/jupyter/mlc_llm/dist/prebuilt/Llama-2-13b-chat-hf-q4f16_1 --device 0 --host 0.0.0.0 --port 7777```
 
++ **使用vllm模型启动**
+  ```
+  
+  ```
+  模型启动，--model后的参数为模型路径，可根据需求更换
+  ```
+  CUDA_VISIBLE_DEVICES=1  nohup python -m vllm.entrypoints.openai.api_server --model /data/jupyter_workspaces/wanglina/models/llama2-Chinese-13b-Chat_0221 --host 0.0.0.0 --port 6666 --tensor-parallel-size 1 --max-parallel-loading-workers 8 --tokenizer-mode auto &
+  ```
++ **docker 容器操作**
+  - 下载、运行和启动mysql容器
+    ```sh
+      docker run -d --restart=always -p 3306:3306 --privileged=true  -e MYSQL_ROOT_PASSWORD=cihon --name mysql mysql:latest --character-set-server=utf8 --collation-server=utf8_general_ci
+    ```
+  - 下载、运行、启动并指定数据存储位置的mysql容器代码
+    ```sh
+      docker run --name mysql -p 3306:3306 --privileged=true --restart unless-stopped -v /mydata/mysql/log:/var/log/mysql -v /mydata/mysql/data:/var/lib/mysql -v /mydata/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+    ```
+  - 下载、运行、后台启动、指定数据存储位置且容器异常退出时自动重启的mysql容器代码
+    ```sh
+      docker run --name mysql -d -p 3306:3306 --privileged=true --restart unless-stopped -v /data/tools/mysql/log:/var/log/mysql -v /data/tools/mysql/data:/var/lib/mysql -v /data/tools/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7
+    ```
+  - ***启动neo4j***
+    ```bash
+      docker run -d --restart=always --name neo4j -p 7474:7474 -p 7687:7687 -v /home/neo4j/data:/data -v /home/neo4j/logs:/logs -v /home/neo4j/conf:/var/lib/neo4j/conf -v /home/neo4j/import:/var/lib/neo4j/import --env NEO4J_AUTH=neo4j/cihon2023 neo4j:latest```
+    ```
+    ```sh
+      # langchain 中添加了-e 参数
+      docker run -d --restart=always --name neo4j -p 7474:7474 -p 7687:7687 -v /home/neo4j/data:/data -v /home/neo4j/logs:/logs -v /home/neo4j/conf:/var/lib/neo4j/conf -v /home/neo4j/import:/var/lib/neo4j/import --env NEO4J_AUTH=neo4j/cihon2023  -e NEO4J_PLUGINS=\[\"apoc\"\] neo4j:latest
+    ```
+  - **启动nginx**
+    ```sh
+      docker run --name nignx -itd -p 8108:80 --restart=always -v /data/lsq/nginx/html:/usr/share/nginx/html -v /data/lsq/nginx/nginx.conf:/etc/nginx/nginx.conf -v /data/lsq/nginx/conf.d:/etc/nginx/conf.d -v /data/lsq/nginx/logs:/var/log/nginx nginx
+    ```
+ - **启动向量库**
+   ```sh
+	sudo docker run -d --name milvus_cpu_2.3.9 \
+	-p 19530:19530 \
+	-p 19121:19121 \
+	-v /home/milvus/db:/var/lib/milvus/db \
+	-v /home/milvus/conf:/var/lib/milvus/conf \
+	-v /home/milvus/logs:/var/lib/milvus/logs \
+	-v /home/milvus/wal:/var/lib/milvus/wal \
+	milvus_lsq:v2.3.9
+   ```
+   
+  
+- **panddlepaddle服务启动**
+  ```sh
+    CUDA_VISIBLE_DEVICES=0,1 nohup python -u  -m paddle.distributed.launch --gpus "0,1" /data/PaddleNLP-develop/llm/run_pretrain.py /data/PaddleNLP-develop/llm/llama/pretrain-flagalpha_llama2_7b-tp2sd4_stage2.json --data_cache /data/checkpoints/ &
+  ```
+**BML:**
+  ```vim /home/bml/.condarc```
+**查看linux系统信息:**
+  ```cat /proc/version```
+**注意**
+  ```sh
+	# 镜像大模型启动时，需要配置--shm-size  32g 即共享内存大小，否则会报核错误
+	docker run -idt  --shm-size  32g -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  ppd_nvia_lsq:v1
+  ```
 
 
 
-
-**不用conda activte 环境名切换时，可用
+**不用conda activate 环境名切换时，可用
 ```sh
 
 ```
