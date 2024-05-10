@@ -52,11 +52,26 @@
 
 
 
++ **安装wechat-on-chatpgt时注意**
++ python==3.8.*
++ urllib3需要改为：```pip install urllib3==1.25.11``` 否则1.26.0版本的urllib3添加了HTTPS支持，但代理服务器不支持HTTPS，所以报错（pip走代理报错也差不多类似原因，具体请参考上文，有详细解读）
 
 
++ **服务器安装代理后访问方式：
++ ```curl --proxy http://127.0.0.1:7890  https://www.google.com.hk/```
 
-
-
++ **若误操作~/.bashrc，并~/.bashrc source了，可通过python代码修改并source**
++ ```py
+	import os
+	with open('/root/.bashrc') as f:
+	    rc = r.read()
+	#  修改rc文件
+	with open('/root/.bashrc','w') as f:
+	    rc = f.write(rc)
+	import subprocess
+	subprocess.run(['/bin/bash', '-c', 'source ~/.bashrc'])或subprocess.run(['/bin/bash', '-c', 'source ~/.bashrc'], shell=True)
+  ```
++ 但在已开启的页面无效，另启一个新页面，即可正常使用
 
 
 
