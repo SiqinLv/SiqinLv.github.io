@@ -187,6 +187,8 @@
 + ```sh
 	conda activate your_environment_name
 	conda list --export > environment.yml
+  	# 或使用
+        pip freeze -> requirements.txt  # 环境导出
 	# 安装yum环境的包
 	conda env create -f environment.yml
 	conda env update -f environment.yml
@@ -370,27 +372,75 @@
 
 **牛洲广本账号信息**
   - ***EasyConnect***
-    > 用户名：O-NIUZHOU
-    > 密  码：Cihon@#01
+    > 用户名：`O-NIUZHOU`
+    > 密  码：`Cihon@#01`
   - ***齐治科技***
-    > 用户名：O-NIUZHOU
-    > 密  码：Ghac@654321
+    + 用户名：`O-NIUZHOU`
+    + 密  码：`Ghac@654321`
   - ***CCE***
-    > 网址：```https://cce.ghac.cn/cce```
-    > 用户名：o-niuzhou
-    > 密  码：Ghac@111
+    + 网址：```https://cce.ghac.cn/cce```
+    + 用户名：`o-niuzhou`
+    + 密  码：`Ghac@111`
   - ***堡垒机***
-    > 用户名：o-niuzhou
-    > 密  码：Ch@#01020304
+    + 用户名：`o-niuzhou`
+    + 密  码：`Ch@#01020304`
 
 **BML 平台账号密码**
-  > 网址：```https://cloud.ghac.cn/logon/LogonPoint/tmindex.html ```
-  > 用户名：O-SONGGUOPENG
-  > 密  码：Cihon}Ghac.cn0411!
+  + 网址：```https://cloud.ghac.cn/logon/LogonPoint/tmindex.html ```
+  + 用户名：`O-SONGGUOPENG`
+  + 密  码：`Cihon}Ghac.cn0411!`
+  + 广本邮箱地址：`https://sdp.ghac.cn/UniSSOView/#/login`
+  + 广本邮箱：`user/pwd:O-SONGGUOPENG/Cihon}Ghac.cn1209!`
 > 平台内部
-  - 网址：```[https://cloud.ghac.cn/logon/LogonPoint/tmindex.html ](http://10.110.195.212:8080/)```
-  - 用户名：SONGGUOPENG
-  - 密  码：ghac1103@Cihon
+  + 网址：```[https://cloud.ghac.cn/logon/LogonPoint/tmindex.html ](http://10.110.195.212:8080/)```
+  + 用户名：`SONGGUOPENG`
+  + 密  码：`ghac1103@Cihon`
+**移动云文件传输**
+```sh
+  scp -r -P 2222 root@ip:/data/jupyter_workspaces/lvsiqin/GB02/ppd_nvida_lsq_v1.tar C:\Users\jiang\Downloads
+```
+**docker容器操作**
++ 拉取镜像：`docker pull nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04`
++ 启动临时镜像: `docker run --name xlName -idt 镜像名称`
++ 复制代码到容器中: `docker cp /data/jupyter_workspaces/lvsiqin/GB02 7b826a822107:/data/`
+
+**容器ubuntu内安装python环境**
+  1.更新系统：
+    ```sh
+      apt update
+      apt upgrade
+    ```
+  2.下载pythonrun
+    ```sh
+      wget https://www.python.org/ftp/python/3.10.3/Python-3.10.3.tgz
+    ```
+    2.1.安装依赖
+      ```sh
+        apt-get install zlib1g-dev # 可能不需要安装
+        apt-get install libffi-dev libssl-dev
+        apt-get install libsqlite3-dev
+        apt-get install libbz2-dev
+        apt-get install libffi-dev
+        apt-get install liblzma-dev
+        apt-get install xz-utils
+      ```
+  3.解压&编译
+    ```sh
+      tar -xf Python-3.10.3.tgz
+      cd Python-3.10.3
+      ./configure --enable-optimizations --with-ssl --with-zlib --with-sqlite --with-tkinter --with-bz2 --with-lzma
+      make -j $(nproc)
+      make altinstall
+    ```
+  4.验证：
+    ```sh
+      pip3.10 python3.10
+    ```
+  5.安装vim命令
+    ```sh
+      apt install vim
+    ```
+**ubuntu 文件乱码解决**
 
 
 
