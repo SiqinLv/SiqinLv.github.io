@@ -129,8 +129,11 @@
 + 将该环境写入jupyter的kernel中：
 + ```python -m ipykernel install --user --name 环境名称 --display-name "你想在jupyter中显示的该环境的名称"```
 
-+ **pip 国内镜像**
-+ https://pypi.douban.com/simple
++ **pip 国内镜像** 
+    >- 豆瓣：-i https://pypi.douban.com/simple
+    >- 阿里：-i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+    >- 清华：https://pypi.tuna.tsinghua.edu.cn/simple/
+
 + **安装neo4j**
 + ```pip install neo4j-driver```
 + **清空GPU显存**
@@ -168,3 +171,8 @@
   - 压缩：```tar -czvf archive.tar.gz /path/to/folder```
   - 解压：```tar -xzvf archive.tar.gz```
   - 解压：```tar -xzvf archive.tar.gz -C /path/to/destination```
++ **容器操作**
++ - 容器提交为镜像：```docker commit my_container my_image:tag```
++ - 镜像打包为tar包：```docker save -o my_image.tar my_image:tag```
++ - 加载打包的镜像：```docker load -i my_image.tar```
++ - 容器运行：```docker run -d --name my_new_container my_image:tag```
