@@ -10,6 +10,10 @@
 +  ```ls -l |grep "^-"|wc -l```
 +  **查看文件夹个数**
 +  ```ls -l | grep "^d" | wc -l```
++  **查看文件夹大小**
++  ```du -h --max-depth=1```
++  **查看指定文件夹大小**
++  ```du -h --max-depth=1  /home```
 +  **mysql 正则查询**
 +  ```select * from model_repair_handbook where content REGEXP '\\.png(?!"\\/>|\\?Expires)'```
 
@@ -22,7 +26,8 @@
 +  **jupyter 安装**
 +  ```pip install jupyter```
 +  运行 jupyter
-+  ```jupyter notebook --ip=0.0.0.0 --port=8083 --allow-root```
++  前台运行：```jupyter notebook --ip=0.0.0.0 --port=8083 --allow-root```
++  后台运行：```nohup jupyter notebook --ip=0.0.0.0 --port=9999 --allow-root &```
 +   浏览器不弹出启动：
 +  ```jupyter notebook --no-browser```
 + jupyterlab 安装
@@ -38,6 +43,7 @@
 + ```jupyter lab --allow-root```
 + jupyterlab 后台运行
 + ```nohup jupyter lab --allow-root --port 8888 &```
+
 + 访问方式：```http://192.168.4.225:8891```
 + **文件压缩 linux unzip 中文解压缩**
 +  指定解压编码：-O:```unzip -O gbk *.zip```
@@ -115,6 +121,8 @@
 + gevent 没有的情况下需自行安装，否则就用以下方式启动
 + **服务运行命令**
 +  ```gunicorn -w 1 -b 0.0.0.0:8082 fileServer2:app```
++  ** conda 环境切换
++  ```conda activate lsq```
 
 + **conda 虚拟环境添加到jupyter内核环境中**
 + 为已有的环境下载kernel文件：```conda install -n 已存环境名称 ipykernel```
@@ -131,3 +139,9 @@
 	>- 清空所有占用显存的进程：```sudo fuser -v /dev/nvidia* |awk '{for(i=1;i<=NF;i++)print "kill -9 " $i;}' | sudo sh```
 	>- 要实时显示GPU占用情况，你可以使用以下命令运行```nvidia-smi```或```watch -n 1 nvidia-smi  或 nvitop --colorful```
 
++ **对源码的安装**
++ - 对源码中```setup.py```文件安装
+  - 1.先下载你要安装的包，并解压到磁盘下；
+  - 2.***在linux中进入到该文件的setup.py 目录下*** 或 ***在window上打开cmd，并切换到该目录下；***
+  - 3.执行：```python setup.py build```
+  - 4.执行：``` python setup.py install```
