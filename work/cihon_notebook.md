@@ -353,17 +353,46 @@
   ```cat /proc/version```
 **注意**
   ```sh
-	# 镜像大模型启动时，需要配置--shm-size  32g 即共享内存大小，否则会报核错误
-	docker run -idt  --shm-size  32g -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  ppd_nvia_lsq:v1
+    # 镜像大模型启动时，需要配置--shm-size  32g 即共享内存大小，否则会报核错误
+    docker run -idt  --shm-size  32g -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  ppd_nvia_lsq:v1
   ```
 **模型训练**
   ```bash
-	docker run -it  --shm-size  32g -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  -w /data/ ppd_nvia_lsq:v1 python3.10  -u  -m paddle.distributed.launch --gpus "2,3,4,5,6,7" /data/PaddleNLP-develop/llm/run_pretrain.py /data/PaddleNLP-develop/llm/llama/pretrain-flagalpha_llama2_7b-tp2sd4_stage2.json --data_cache /data/checkpoints/
+    docker run -it  --shm-size  32g -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  -w /data/ ppd_nvia_lsq:v1 python3.10  -u  -m paddle.distributed.launch --gpus "2,3,4,5,6,7" /data/PaddleNLP-develop/llm/run_pretrain.py /data/PaddleNLP-develop/llm/llama/pretrain-flagalpha_llama2_7b-tp2sd4_stage2.json --data_cache /data/checkpoints/
   ```
 **容器模型启动**
 ```bash
-	docker run -it  -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  -w /data/ ppd_nvia_lsq:v1 python3.10 -m paddle.distributed.launch --gpus "2,3,4,5,6,7" /data/PaddleNLP-develop/llm/flask_server.py --model_name_or_path /data/FlagAlpha/Llama2-Chinese-7b-Chat --port 8010 --flask_port 8011 --dtype "float16"
+    docker run -it  -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  -w /data/ ppd_nvia_lsq:v1 python3.10 -m paddle.distributed.launch --gpus "2,3,4,5,6,7" /data/PaddleNLP-develop/llm/flask_server.py --model_name_or_path /data/FlagAlpha/Llama2-Chinese-7b-Chat --port 8010 --flask_port 8011 --dtype "float16"
 ```
+
+**BML:**
+  ```vim /home/bml/.condarc```
+
+**牛洲广本账号信息**
+  - ***EasyConnect***
+    > 用户名：O-NIUZHOU
+    > 密  码：Cihon@#01
+  - ***齐治科技***
+    > 用户名：O-NIUZHOU
+    > 密  码：Ghac@654321
+  - ***CCE***
+    > 网址：```https://cce.ghac.cn/cce```
+    > 用户名：o-niuzhou
+    > 密  码：Ghac@111
+  - ***堡垒机***
+    > 用户名：o-niuzhou
+    > 密  码：Ch@#01020304
+
+**BML 平台账号密码**
+  > 网址：```https://cloud.ghac.cn/logon/LogonPoint/tmindex.html ```
+  > 用户名：O-SONGGUOPENG
+  > 密  码：Cihon}Ghac.cn0411!
+> 平台内部
+  - 网址：```[https://cloud.ghac.cn/logon/LogonPoint/tmindex.html ](http://10.110.195.212:8080/)```
+  - 用户名：SONGGUOPENG
+  - 密  码：ghac1103@Cihon
+
+
 
 **不用conda activate 环境名切换时，可用
 ```sh
