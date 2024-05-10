@@ -50,6 +50,32 @@
 + 删除乱码文件 ```find -inum 乱码目录前的数字编号 -delete```
 + 删除乱码文件夹 ```find -inum 乱码目录前的数字编号 -exec rm -rf {} \```
 
++ **安装pyaudio时正确流程**
++ ```sh
+	sudo yum install portaudio-devel
+	pip install pyaudio
+  ```
+
++ **服务器安装声卡 目前服务器上都无声卡驱动，大概率无法实现**
++ - 查看音屏文件
+  - ```dmesg | grep -i audio``` ```lsmod | grep snd```
+  - 安装依赖包
+  - ```yum install portaudio-devel```
+  - ```pip install pyaudio```
+  - 查看音频信息
+  - lspci
+  -  安装pavucontrol，使其命令可用
+  -  ```yum install pavucontrol```
+  -  安装yum install jackd时报错，解决方法：
+  -  ```sh
+		yum groupinstall "Development Tools"   
+		yum install libtool libtool-ltdl-devel libsndfile-devel
+		wget https://github.com/jackaudio/jack2/archive/v1.9.22.tar.gz
+		tar -xf jackd-v1.9.22.tar.gz
+		cd jack2-1.9.22/
+		./waf configure
+		./waf
+      ```
 
 
 + **安装wechat-on-chatpgt时注意**
@@ -72,7 +98,8 @@
 	subprocess.run(['/bin/bash', '-c', 'source ~/.bashrc'])或subprocess.run(['/bin/bash', '-c', 'source ~/.bashrc'], shell=True)
   ```
 + 但在已开启的页面无效，另启一个新页面，即可正常使用
-
++ **MySQL 错误代码:1055 解决方案（推荐！！)**
++ 在mysql查询控制台：```SET sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'```
 
 
 
