@@ -126,11 +126,11 @@
 + ```gunicorn==20.0.4```
 + 注意在使用gunicorn前，需要将flask代码中的app.run部分的代码注释掉
 
-+ **模型运行：**
++ **模型服务运行：**
 + ```nohup gunicorn -w 3 -k gevent --threads 5 --worker-connections 100 --keep-alive 5  -b 0.0.0.0:8080 app_vllm240105_3:app &```
-+ gevent 没有的情况下需自行安装，否则就用以下方式启动
-+ **服务运行命令**
++ ```nohup gunicorn -w 3 --threads 5 --worker-connections 100 --keep-alive 5  -b 0.0.0.0:7777 JL_embedding_neo4j:app &```
 +  ```gunicorn -w 1 -b 0.0.0.0:8082 fileServer2:app```
++ gevent 没有的情况下需自行安装，否则就用以下方式启动
 +  ** conda 环境切换
 +  ```conda activate lsq```
 
@@ -289,13 +289,15 @@
 	echo "set(USE_VULKAN OFF)" >> config.cmake
 	echo "set(USE_OPENCL OFF)" >> config.cmake
 	echo "set(USE_LIBBACKTRACE OFF)" >> config.cmake
+
+  	echo "set(DCMAKE_VERBOSE_MAKEFILE ON)" >> config.cmake
   ```
   **报-static-libstdc++时,编译解决方案为**
   ```g++ -std=c++11```
+  启动：```python -m mlc_chat.rest --model llama2 --lib-path /data/lvsiqin/jupyter/mlc_llm/dist/prebuilt/Llama-2-13b-chat-hf-q4f16_1 --device 0 --host 0.0.0.0 --port 7777```
 
 
 
-echo "set(DCMAKE_VERBOSE_MAKEFILE ON)" >> config.cmake
 
 
 **不用conda activte 环境名切换时，可用
