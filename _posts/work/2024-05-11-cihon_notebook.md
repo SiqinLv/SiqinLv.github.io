@@ -387,6 +387,7 @@
 
 **BML 平台账号密码**
   + 网址：```https://cloud.ghac.cn/logon/LogonPoint/tmindex.html ```
+  + 邮箱地址：O-SONGGUOPENG@ghac.cn
   + 用户名：`O-SONGGUOPENG`
   + 密  码：`Cihon}Ghac.cn0411!`
   + 广本邮箱地址：`https://sdp.ghac.cn/UniSSOView/#/login`
@@ -441,10 +442,91 @@
       apt install vim
     ```
 **ubuntu 文件乱码解决**
+- 1.确定字符集命令：`locale`
+- 2.添加字符集到系统文件中`vim /etc/profile` 在最后一样加上：`export LANG=C.UTF-8`
+- 3.编译：`source /etc/profile`
 
+**查看容器内空间占用情况**
+du -sh  /*
+**卸载pip3.7下的所有不包括setuptools、PyGObject、python-apt的包**
+- jupyter-client       7.3.0
+- jupyter_core         4.12.0
+- jupyter_packaging    0.12.3
+- jupyter-server       1.6.4
+- jupyterlab           3.3.4
+- jupyterlab-pygments  0.2.2
+- jupyterlab-server    2.10.3
+- 指定pip路径进行包卸载：\jupyter-client\|jupyter_core\|jupyter_packaging\|jupyter-server\|jupyterlab\|jupyterlab-pygments\|jupyterlab-server\pip3.7 freeze | grep -v "pip3.7\|setuptools\|PyGObject\|python-apt\|jupyterlab\|jupyter-client\|jupyter_core\|jupyter_packaging\|jupyter-server\|jupyterlab\|jupyterlab-pygments\|jupyterlab-server\|packaging" | xargs pip3.7 uninstall -y
 
+**容器扩容 `--shm-size`**,大模型训练是必须使用该参数，否则在没有任何错误的情况加容易报核错误
+`docker run --name lm_tuning_docker -idt --shm-size  32g lm_tuning:v1`
 
-**不用conda activate 环境名切换时，可用
-```sh
+**容器打包成镜像**
+  ```
+    docker commit -a "lsq" -m "model_train" 03a1579bc3b7 train:v1 
+    docker commit -a "lsq" -m "model_train" 8f72a48c0da8 paddlepaddle_llama2_7:v1
+  ```
+**容器导出**
+  ```
+    docker save -o /data/local/docker/gb2_img_v1.tar gb2_img:v1
+    docker save -o gb2_img:v0.tar gb2_img:v0
+  ```
 
-```
+**广本2期模型训练：**
+  外部环境启动训练：
+  ```sh
+    sh /data/PaddleNLP-develop/llm/llama/run_trainer_tp4pp2.sh
+  ```
+  或使用
+  ```sh
+    CUDA_VISIBLE_DEVICES=6,7 python3.9 -u  -m paddle.distributed.launch --gpus "6,7" /data/PaddleNLP-develop/llm/run_pretrain.py /data/PaddleNLP-develop/llm/llama/pretrain-flagalpha_llama2_7b-tp2sd4_stage2.json --data_cache /data/checkpoints/
+  ```
+  容器启动训练
+  ```sh
+    docker run -it  --shm-size  32g -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  -w /data/ ppd_nvia_lsq:v1 python3.10  -u  -m paddle.distributed.launch --gpus "2,3,4,5,6,7" /data/PaddleNLP-develop/llm/run_pretrain.py /data/PaddleNLP-develop/llm/llama/pretrain-flagalpha_llama2_7b-tp2sd4_stage2.json --data_cache /data/checkpoints/
+  ```
+  在BML平台容器启动训练：
+  ```sh
+    docker run -it  --shm-size  32g  -v /home/bml/storage/mnt/v-r7vzv7ek3r9s2amy/org/GB02/data:/data  -w /data/  ppd_nvia_lsq:v1 python3.10  -u  -m paddle.distributed.launch --gpus "2,3,4,5,6,7" /data/PaddleNLP-develop/llm/run_pretrain.py /data/PaddleNLP-develop/llm/llama/pretrain-flagalpha_llama2_7b-tp2sd4_stage2.json --data_cache /data/checkpoints/
+  ```
+
+- **容器服务启动**
+  模型映射启动 运行flask_server.py接口启动：
+  ```sh
+  docker run -it  -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  -w /data/ ppd_nvia_lsq:v1 python3.10 -m paddle.distributed.launch --gpus "0" /data/PaddleNLP-develop/llm/flask_server.py --model_name_or_path /data/FlagAlpha/Llama2-Chinese-7b-Chat --port 8010 --flask_port 8011 --dtype "float16"
+  ```
+**容器打包**
+  ```sh
+    docker commit -a "lsq" -m "model_train" 8f72a48c0da8 paddlepaddle_llama2_7:v1
+  ```
+**容器启动**
+  ```sh
+    docker run -w /data/ -v /data/jupyter_workspaces/lvsiqin/GB02/docker_panddle_llama2_7/run_trainer_tp4pp2.sh:/data/run_trainer_tp4pp2.sh_/paddlepaddle_llama2_7_docker/  --shm-size  32g paddlepaddle_llama2_7:v1 sh /data/run_trainer_tp4pp2_lsq.sh --gpus "2,3,4,5,6,7"
+  ```
+  在容器内部，可通过`python3.10 PaddleNLP-develop/llm/predictor.py --model_name /data/FlagAlpha/Llama2-Chinese-7b-Chat --inference_model --dtype float16`测试环境是否符合模型运行条件，否则对环境进行适配
+**本机虚拟机**
+  - 账号：`root`
+  - 密码：`123`
+  > 登录cce:`cce  login https://cce.ghac.cn`
+  - 用户名：o-niuzhou
+  - 密码：Ch@#01020304
+  > 齐治科技：
+  - 用户名：O-SONGGUOPENG
+  - 用户名：Cihon}Ghac.cn1209!
+**向量库启动命令**
+  - 容器启动：`docker run -d --name milvus_cpu_2.3.9 -p 19530:19530 -p 19121:19121 -v /home/milvus_mapping:/var/lib/milvus  milvus_lsq:v2.3.9`
+  - 容器日志：`docker logs -f milvus_cpu_2.3.9`
+**bug解决**
+  - 原因：`Error while finding module specification for 'paddle.distributed.launch' (ModuleNotFoundError: No module named 'paddle')`
+  - 结果：`pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple`
+**不用conda activate 环境名切换时，可用**
+  - pip which 路径被改，环境切换方式：
+  ```sh
+    export PATH=/data/tools/anaconda3/envs/paddlepaddle_env/bin:$PATH
+    export LD_LIBRARY_PATH="/data/tools/anaconda3/envs/paddlepaddle_env/lib:$LD_LIBRARY_PATH"
+  ```
+**paddlepaddle 判断GPU是否可用**
+  ```python
+    import paddle
+    paddle.is_compiled_with_cuda()
+  ```
