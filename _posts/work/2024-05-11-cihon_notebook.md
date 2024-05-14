@@ -405,16 +405,16 @@
 + 复制代码到容器中: `docker cp /data/jupyter_workspaces/lvsiqin/GB02 7b826a822107:/data/`
 
 **容器ubuntu内安装python环境**
-1.更新系统：
+- 1.更新系统：
     ```sh
       apt update
       apt upgrade
     ```
-2.下载pythonrun
+- 2.下载pythonrun
     ```sh
       wget https://www.python.org/ftp/python/3.10.3/Python-3.10.3.tgz
     ```
-  2.1.安装依赖
+    - 2.1.安装依赖
       ```sh
         apt-get install zlib1g-dev # 可能不需要安装
         apt-get install libffi-dev libssl-dev
@@ -424,7 +424,7 @@
         apt-get install liblzma-dev
         apt-get install xz-utils
       ```
-3.解压&编译
+- 3.解压&编译
     ```sh
       tar -xf Python-3.10.3.tgz
       cd Python-3.10.3
@@ -432,11 +432,11 @@
       make -j $(nproc)
       make altinstall
     ```
-4.验证：
+- 4.验证：
     ```sh
       pip3.10 python3.10
     ```
-5.安装vim命令
+- 5.安装vim命令
     ```sh
       apt install vim
     ```
