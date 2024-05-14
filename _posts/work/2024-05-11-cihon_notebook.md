@@ -405,12 +405,12 @@
 + 复制代码到容器中: `docker cp /data/jupyter_workspaces/lvsiqin/GB02 7b826a822107:/data/`
 
 **容器ubuntu内安装python环境**
-  1.更新系统：
+- 1.更新系统：
     ```sh
       apt update
       apt upgrade
     ```
-  2.下载pythonrun
+- 2.下载pythonrun
     ```sh
       wget https://www.python.org/ftp/python/3.10.3/Python-3.10.3.tgz
     ```
