@@ -47,10 +47,13 @@
 + ```jupyter lab --generate-config```
 + 生成的配置路径一般在：
 + ```/root/.jupyter/jupyter_lab_config.py```
++ 指定路径下运行jupyterlab `mkdir -p /home/workspace`
 + jupyterlab 前台运行
 + ```jupyter lab --allow-root```
 + jupyterlab 后台运行
 + ```nohup jupyter lab --allow-root --port 8888 &```
++ jupyterlab 后台、指定ip、端口号及运行目录 运行
++ `nohup jupyter lab --ip='*' --port=8701 --notebook-dir='/home/workspace' --no-browser --allow-root &`
 
 
 + 访问方式：```http://192.168.4.225:8891```
@@ -139,6 +142,7 @@
 + 为已有的环境下载kernel文件：```conda install -n 已存环境名称 ipykernel```
 + 将该环境写入jupyter的kernel中：
 + ```python -m ipykernel install --user --name 环境名称 --display-name "你想在jupyter中显示的该环境的名称"```
++ `sudo /opt/conda/envs/paddlepaddle_env/bin/python -m ipykernel install --name paddlepaddle_env --display-name "paddlepaddle_env"`
 + **删除conda环境**
 + ```conda remove -n your_env_name --all```
 
@@ -473,7 +477,7 @@ du -sh  /*
   ```
 
 **广本2期模型训练：**
-  外部环境启动训练：
+  服务器虚拟环境启动训练：
   ```sh
     sh /data/PaddleNLP-develop/llm/llama/run_trainer_tp4pp2.sh
   ```
@@ -491,10 +495,22 @@ du -sh  /*
   ```
 
 - **容器服务启动**
-  模型映射启动 运行flask_server.py接口启动：
+  启动环境 必装：
+  - > gradio flask
+  1.启动方式1：内部测试启动：
+  `docker run -idt -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  -w /data/ -p 18888:18888 -p 18011:18011 ppd_nvia_lsq:v4`
+  2.启动方式2：容器里面运行：
+  ```sh
+    nohup python3.10 -m paddle.distributed.launch --gpus "0" /data/PaddleNLP-develop/llm/flask_server.py --model_name_or_path /data/llama2-Chinese-13b-Chat_0221 --port 18888 --flask_port 18011 --dtype "float16" &
+  ```
+  3.启动方式3：服务器外部启动：
   ```sh
   docker run -it  -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data  -w /data/ ppd_nvia_lsq:v1 python3.10 -m paddle.distributed.launch --gpus "0" /data/PaddleNLP-develop/llm/flask_server.py --model_name_or_path /data/FlagAlpha/Llama2-Chinese-7b-Chat --port 8010 --flask_port 8011 --dtype "float16"
   ```
+  1.CUP启动： python3.10 -m paddle.distributed.launch /data/PaddleNLP-develop/llm/flask_server.py --model_name_or_path /data/FlagAlpha/Llama2-Chinese-7b-Chat --port 7788 --flask_port 18011 --dtype "float32" # 特别慢，慎用
+  
+**可能需要设置下cuda路径** `export LD_LIBRARY_PATH="/usr/bin:/usr/local/cuda/lib64:$LD_LIBRARY_PATH"`  
+
 **容器打包**
   ```sh
     docker commit -a "lsq" -m "model_train" 8f72a48c0da8 paddlepaddle_llama2_7:v1
@@ -504,6 +520,40 @@ du -sh  /*
     docker run -w /data/ -v /data/jupyter_workspaces/lvsiqin/GB02/docker_panddle_llama2_7/run_trainer_tp4pp2.sh:/data/run_trainer_tp4pp2.sh_/paddlepaddle_llama2_7_docker/  --shm-size  32g paddlepaddle_llama2_7:v1 sh /data/run_trainer_tp4pp2_lsq.sh --gpus "2,3,4,5,6,7"
   ```
   在容器内部，可通过`python3.10 PaddleNLP-develop/llm/predictor.py --model_name /data/FlagAlpha/Llama2-Chinese-7b-Chat --inference_model --dtype float16`测试环境是否符合模型运行条件，否则对环境进行适配
+**环境bug解决**
+- cp /data/Paddle-develop/python/paddle/base/framework.py /usr/local/lib/python3.10/site-packages/paddle/base/framework.py # 来自官方源码
+- cp /data/jupyter_workspaces/lvsiqin/GB02/Paddle-develop/python/paddle/base/framework.py /data/tools/anaconda3/envs/paddlepaddle_env/lib/python3.9/site-packages/paddle/base/framework.py -y 
+
+**vll推理工具** `--env "HUGGING_FACE_HUB_TOKEN=<secret>"`
+` docker 下载启动：
+  ```sh
+    docker run --runtime nvidia --gpus all     -v /data/jupyter_workspaces/lvsiqin/GB02/docker_img:/data    -p 8000:8000     --ipc=host --shm-size 5g  vllm/vllm-openai:latest  --model /data/FlagAlpha/Llama2-Chinese-7b-Chat
+  ```
+**已有容器上新建镜像容器2：** 进行容器叠加：
+  - docker export <container-id> > container.tar
+  - cat container.tar | docker import - <new-image-name>
+
+**错误解决：**
+  - libcublas.so.11: undefined symbol: cublasLtGetStatusString, versio…
+  - 安装pytorch之后，import torch报错
+  - libcublas.so.11: undefined symbol: cublasLtGetStatusString, version libcublasLt.so.11
+  - 解决方法：
+    >`pip uninstall nvidia_cublas_cu11`
+
+**文件内容查找**
+```sh
+  grep -r "in_cinn_mode" /path/to/directory
+```
+
+**bml平台notebook部署** 不记得了，没权限没用过，pass掉
+  - bmlmodel config -a 7cce4b232e624f47a834ab5d0ef8030f -s e77a1f1f0d384e338497b9e485281e4b
+  - bmlmodel publish -n  gb02_text2text -v 1.0.0.0 -p version -l pymodel
+
+**运行广本项目**
+  ```sh
+    cd /home/bml/mnt/data && gunicorn -w 1 -b 0.0.0.0:18086 GB02_bak:app
+  ```
+  添包且切换目录运行`pip install gunicorn && cd /home/bml/mnt/data && gunicorn -w 1 -b 0.0.0.0:18086 GB02_bak:app`
 **本机虚拟机**
   - 账号：`root`
   - 密码：`123`
