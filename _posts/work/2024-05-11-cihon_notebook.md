@@ -142,7 +142,9 @@
 + 为已有的环境下载kernel文件：```conda install -n 已存环境名称 ipykernel```
 + 将该环境写入jupyter的kernel中：
 + ```python -m ipykernel install --user --name 环境名称 --display-name "你想在jupyter中显示的该环境的名称"```
-+ `sudo /opt/conda/envs/paddlepaddle_env/bin/python -m ipykernel install --name paddlepaddle_env --display-name "paddlepaddle_env"`
++ 也可指定python路径 ```sudo $(which python) -m ipykernel install --user --name paddlepaddle_env_v2 --display-name "paddlepaddle_env_v2"```
+
++ 例如：`sudo /opt/conda/envs/paddlepaddle_env/bin/python -m ipykernel install --name paddlepaddle_env --display-name "paddlepaddle_env"`
 + **删除conda环境**
 + ```conda remove -n your_env_name --all```
 
