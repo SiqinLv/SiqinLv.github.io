@@ -582,3 +582,20 @@ du -sh  /*
     import paddle
     paddle.is_compiled_with_cuda()
   ```
+**查看pip路径**
+ - ```pip show pip``` 或 ```which pip```
+
+**修改gunicron的python路径**
+ - ```python
+       vim /home/bml/storage/mnt/v-r7vzv7ek3r9s2amy/org/app/paddlepaddle_env_v2/bin/gunicorn
+   ```
+ - 强制重新安装 gunicorn： ```pip install --force-reinstall gunicorn```
+ - 确认 gunicorn 的路径：```head -n 1 /home/bml/storage/mnt/v-r7vzv7ek3r9s2amy/org/app/paddlepaddle_env_v2/bin/gunicorn```
+ - 检查 gunicorn 是否正常工作：```gunicorn --version```
+ - 确定这三个在同一路径下：
+   ```base
+	which python
+	which pip
+	which gunicorn
+   ```
+ - 获得调试信息: ```gunicorn -w 1 -b 0.0.0.0:18086 run_v1:app --log-level debug```
