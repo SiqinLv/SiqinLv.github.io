@@ -103,7 +103,7 @@
   <title>{{ page.title }}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-  <style>
+<!--   <style>
     body {
       box-sizing: border-box;
       min-width: 200px;
@@ -122,6 +122,38 @@
       border: none;
       padding: 5px;
       cursor: pointer;
+    }
+  </style> -->
+  <style>
+    /* 复制按钮样式 */
+    .copy-button {
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-family: monospace; /* 使用等宽字体 */
+        position: relative; /* 使按钮相对定位 */
+    }
+    
+    /* 悬停效果 */
+    .copy-button:hover {
+        background-color: #f0f0f0;
+    }
+    
+    /* 代码块框样式 */
+    .code-block-container {
+        position: relative;
+        display: inline-block;
+    }
+    
+    /* 代码块样式 */
+    .code-block {
+        background-color: #f8f8f8;
+        border: 1px solid #cccccc;
+        padding: 10px;
+        font-family: monospace;
+        overflow-x: auto; /* 如果代码太长，允许水平滚动 */
+        white-space: pre-wrap; /* 保留空格和换行 */
     }
   </style>
 </head>
