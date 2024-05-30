@@ -5,7 +5,9 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main","release/*"]
-
+  pull_request:
+    branches: ["main","release/*"]
+    
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -37,6 +39,9 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+      - name: Cache
+        uses: actions/cache@v4.0.2
+
 
   # Deployment job
   deploy:
@@ -49,3 +54,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
+
+
+          
