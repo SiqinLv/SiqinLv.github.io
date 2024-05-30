@@ -23,6 +23,7 @@ theme: "minima"
 rss: rss
 #syntax_highlighter_opts:
 #  disable: true
+markdown: kramdown
 kramdown:
   input: GFM
   auto_ids: true
