@@ -26,7 +26,10 @@ kramdown:
   syntax_highlighter_opts:
     disable: true
     input: GFM
-      
+    auto_ids: true
+    hard_wrap: false
+    syntax_highlighter: rouge  
+    
 plugins:
   - jekyll-feed
   - jekyll-sitemap
