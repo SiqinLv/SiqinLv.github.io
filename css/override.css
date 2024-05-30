@@ -43,3 +43,13 @@ hr {
   font-size: 2.5em;
   opacity: 0.3;
 }
+
+.copy-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #eee;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
