@@ -21,10 +21,9 @@ linkedin_username: "吕思琴"
 theme: "minima"
 
 rss: rss
-
+#syntax_highlighter_opts:
+#  disable: true
 kramdown:
-  #syntax_highlighter_opts:
-  #  disable: true
   input: GFM
   auto_ids: true
   hard_wrap: false
