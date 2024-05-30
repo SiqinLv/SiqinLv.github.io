@@ -36,36 +36,67 @@
   <script src="/js/highlightjs/highlight.min.js"></script>
   <script src="/js/highlightjs/clipboard.min.js"></script>
   <script>
+//     document.addEventListener('DOMContentLoaded', (event) => {
+//     document.querySelectorAll('pre code').forEach((block) => {
+//     hljs.highlightBlock(block);
+//     const button = document.createElement('button');
+//     button.innerText = 'Copy';
+//     button.className = 'copy-button';
+//     block.parentNode.appendChild(button);
+//   });
+
+//   const clipboard = new ClipboardJS('.copy-button', {
+//     target: (trigger) => {
+//       return trigger.previousElementSibling;
+//     }
+//   });
+
+//   clipboard.on('success', (e) => {
+//     e.clearSelection();
+//     e.trigger.textContent = 'Copied!';
+//     setTimeout(() => {
+//       e.trigger.textContent = 'Copy';
+//     }, 2000);
+//   });
+
+//   clipboard.on('error', (e) => {
+//     e.trigger.textContent = 'Error';
+//     setTimeout(() => {
+//       e.trigger.textContent = 'Copy';
+//     }, 2000);
+//   });
+// });
     document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelectorAll('pre code').forEach((block) => {
-    hljs.highlightBlock(block);
-    const button = document.createElement('button');
-    button.innerText = 'Copy';
-    button.className = 'copy-button';
-    block.parentNode.appendChild(button);
-  });
+        hljs.highlightBlock(block);
+        const button = document.createElement('button');
+        button.innerText = 'Copy';
+        button.className = 'copy-button';
+        block.parentNode.appendChild(button);
+    });
 
-  const clipboard = new ClipboardJS('.copy-button', {
-    target: (trigger) => {
-      return trigger.previousElementSibling;
-    }
-  });
+    const clipboard = new ClipboardJS('.copy-button', {
+        target: (trigger) => {
+            return trigger.previousElementSibling;
+        }
+    });
 
-  clipboard.on('success', (e) => {
-    e.clearSelection();
-    e.trigger.textContent = 'Copied!';
-    setTimeout(() => {
-      e.trigger.textContent = 'Copy';
-    }, 2000);
-  });
+    clipboard.on('success', (e) => {
+        e.clearSelection();
+        e.trigger.textContent = 'Copied!';
+        setTimeout(() => {
+            e.trigger.textContent = 'Copy';
+        }, 2000);
+    });
 
-  clipboard.on('error', (e) => {
-    e.trigger.textContent = 'Error';
-    setTimeout(() => {
-      e.trigger.textContent = 'Copy';
-    }, 2000);
-  });
+    clipboard.on('error', (e) => {
+        e.trigger.textContent = 'Error';
+        setTimeout(() => {
+            e.trigger.textContent = 'Copy';
+        }, 2000);
+    });
 });
+
 </script>
 </body>
 </html>
