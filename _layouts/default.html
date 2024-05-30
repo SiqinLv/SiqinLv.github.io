@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -36,67 +36,112 @@
   <script src="/js/highlightjs/highlight.min.js"></script>
   <script src="/js/highlightjs/clipboard.min.js"></script>
   <script>
-//     document.addEventListener('DOMContentLoaded', (event) => {
-//     document.querySelectorAll('pre code').forEach((block) => {
-//     hljs.highlightBlock(block);
-//     const button = document.createElement('button');
-//     button.innerText = 'Copy';
-//     button.className = 'copy-button';
-//     block.parentNode.appendChild(button);
-//   });
-
-//   const clipboard = new ClipboardJS('.copy-button', {
-//     target: (trigger) => {
-//       return trigger.previousElementSibling;
-//     }
-//   });
-
-//   clipboard.on('success', (e) => {
-//     e.clearSelection();
-//     e.trigger.textContent = 'Copied!';
-//     setTimeout(() => {
-//       e.trigger.textContent = 'Copy';
-//     }, 2000);
-//   });
-
-//   clipboard.on('error', (e) => {
-//     e.trigger.textContent = 'Error';
-//     setTimeout(() => {
-//       e.trigger.textContent = 'Copy';
-//     }, 2000);
-//   });
-// });
     document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelectorAll('pre code').forEach((block) => {
-        hljs.highlightBlock(block);
-        const button = document.createElement('button');
-        button.innerText = 'Copy';
-        button.className = 'copy-button';
-        block.parentNode.appendChild(button);
-    });
+    hljs.highlightBlock(block);
+    const button = document.createElement('button');
+    button.innerText = 'Copy';
+    button.className = 'copy-button';
+    block.parentNode.appendChild(button);
+  });
 
-    const clipboard = new ClipboardJS('.copy-button', {
-        target: (trigger) => {
-            return trigger.previousElementSibling;
-        }
-    });
+  const clipboard = new ClipboardJS('.copy-button', {
+    target: (trigger) => {
+      return trigger.previousElementSibling;
+    }
+  });
 
-    clipboard.on('success', (e) => {
-        e.clearSelection();
-        e.trigger.textContent = 'Copied!';
-        setTimeout(() => {
-            e.trigger.textContent = 'Copy';
-        }, 2000);
-    });
+  clipboard.on('success', (e) => {
+    e.clearSelection();
+    e.trigger.textContent = 'Copied!';
+    setTimeout(() => {
+      e.trigger.textContent = 'Copy';
+    }, 2000);
+  });
 
-    clipboard.on('error', (e) => {
-        e.trigger.textContent = 'Error';
-        setTimeout(() => {
-            e.trigger.textContent = 'Copy';
-        }, 2000);
-    });
+  clipboard.on('error', (e) => {
+    e.trigger.textContent = 'Error';
+    setTimeout(() => {
+      e.trigger.textContent = 'Copy';
+    }, 2000);
+  });
 });
-
 </script>
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
+  <style>
+    body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+    pre {
+      position: relative;
+    }
+    .copy-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #eee;
+      border: none;
+      padding: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <article class="markdown-body">
+    {{ content }}
+  </article>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // 高亮显示代码块
+        hljs.highlightAll();
+
+        // 添加复制按钮
+        document.querySelectorAll('pre code').forEach((block) => {
+            const button = document.createElement('button');
+            button.innerText = 'Copy';
+            button.className = 'copy-button';
+            block.parentNode.appendChild(button);
+        });
+
+        // 初始化 Clipboard.js
+        const clipboard = new ClipboardJS('.copy-button', {
+            target: (trigger) => {
+                return trigger.previousElementSibling;
+            }
+        });
+
+        clipboard.on('success', (e) => {
+            e.clearSelection();
+            e.trigger.textContent = 'Copied!';
+            setTimeout(() => {
+                e.trigger.textContent = 'Copy';
+            }, 2000);
+        });
+
+        clipboard.on('error', (e) => {
+            e.trigger.textContent = 'Error';
+            setTimeout(() => {
+                e.trigger.textContent = 'Copy';
+            }, 2000);
+        });
+    });
+  </script>
 </body>
 </html>
