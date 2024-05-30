@@ -4,7 +4,6 @@ title: Blog Archive
 ---
 
 <div class="container">
-    <h1>{{ page.title }}</h1>
     {% for tag in site.tags %}
       <h3>{{ tag[0] }}</h3>
       <ul>
