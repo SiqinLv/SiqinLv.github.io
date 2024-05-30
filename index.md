@@ -1,40 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Lovely Homepage</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f8f8f8;
-        }
-        .heart {
-            color: red;
-            font-size: 50px;
-        }
-        .welcome {
-            font-size: 24px;
-            margin-top: 20px;
-        }
-        .blessings {
-            font-size: 18px;
-            margin-top: 30px;
-        }
-    </style>
-</head>
-<body>
-    <div class="heart">&#10084;</div>
-    <h1>Welcome to My Lovely Homepage</h1>
-    <div class="welcome">
-        <p>Hello there! Welcome to my little corner of the internet. I hope you find joy and inspiration here.</p>
-    </div>
-    <div class="blessings">
-        <p>May your day be filled with love and happiness. Remember, you're amazing just the way you are!</p>
-    </div>
-    <footer>
-        <p>Thank you for visiting!</p>
-    </footer>
-</body>
-</html>
+# 欢迎来到我的温馨小屋！💖
+
+喵喵喵！欢迎来到我可爱的小角落。希望在这里，你会感受到满满的幸福和温暖。
+
+## 🌟 温馨祝福
+
+愿你的每一天都充满爱和快乐。记住，你就是最棒的！
+
+## 💖 动态爱心
+
+来欣赏一下这些可爱的动态爱心，点亮你的一天：
+
+💓 💖 💞 💕 💗 💘 💝
+
+### 关于我
+
+我是一个热爱生活、热爱分享的小伙伴。在这里，我将与你分享我的心情、我的故事，也期待听到你的声音！
+
+### 最新文章
+
+- [如何活出精彩的人生](./posts/live-life.md)
+- [爱是永恒的力量](./posts/love-power.md)
+- [勇敢追逐梦想的故事](./posts/chase-dreams.md)
+
+---
+
+感谢你的光临！祝你一天好心情！😊✨
