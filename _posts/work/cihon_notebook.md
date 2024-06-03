@@ -1,5 +1,7 @@
 + **删除所有wps 进程**
-+ ```kill -9 `ps -ef|grep wps|awk '{print $2}'```
+  ```sh
+  kill -9 `ps -ef|grep wps|awk '{print $2}'
+  ```
 + **拷贝某个项目文件到某个目录下**
 + ```cp /root/lsq/code/维修案例集0827/??? /root/lsq/code/new_day1/flask_file/common/```
 + **拷贝所有项目文件到工程目录中**
