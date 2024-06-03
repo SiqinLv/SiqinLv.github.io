@@ -17,8 +17,18 @@
 +  **查看指定文件夹大小**
 +  ```du -h --max-depth=1  /home```
 +  **mysql 正则查询**
-+  ```select * from model_repair_handbook where content REGEXP '\\.png(?!"\\/>|\\?Expires)'```
-
+ 1. ```select * from model_repair_handbook where content REGEXP '\\.png(?!"\\/>|\\?Expires)'```
+ 2. 正则分组查询
+  ```mysql
+	SELECT * FROM 
+	(
+	select CONCAT("", REPLACE(extend_synonym_name, ',', "|"), "") as a from (select CONCAT(base_synonym_name,',',GROUP_CONCAT(extend_synonym_name)) as extend_synonym_name from base_synonym as b
+	LEFT JOIN extend_synonym AS e
+	ON b.base_synonym_id=e.base_synonym_id
+	GROUP BY b.base_synonym_id ) AS t 
+	) AS t2
+	WHERE '检查行车时有哒哒声' REGEXP t2.a;
+  ```
 +  **有空格或特殊符文件拷贝 用双引号包起来**
 +  ```cp /root/广本知识图谱数据/维修案例数据集/维修案例集0827/"16M缤智RU1后尾 门无法开启.docx" /root/lsq/new_day1/flask_file/common/```
 +  **删除所有gunicron进程**
