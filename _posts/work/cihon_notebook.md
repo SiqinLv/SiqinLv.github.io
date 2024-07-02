@@ -42,6 +42,7 @@
 +  运行 jupyter
 +  前台运行：```jupyter notebook --ip=0.0.0.0 --port=8083 --allow-root```
 +  后台运行：```nohup jupyter notebook --ip=0.0.0.0 --port=9999 --allow-root &```
++  推荐使用：```nohup jupyter lab --ip='*' --port=8701 --notebook-dir='/home/workspace' --no-browser --allow-root &```
 +   浏览器不弹出启动：
 +  ```jupyter notebook --no-browser```
 +  **windows下**:
